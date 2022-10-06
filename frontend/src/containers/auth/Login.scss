@@ -27,6 +27,15 @@
       margin-top: 60px;
       .login-input {
         padding-bottom: 10px;
+        .custom-input-password {
+          position: relative;
+          i {
+            position: absolute;
+            right: 5px;
+            top: 10px;
+            cursor: pointer;
+          }
+        }
       }
     }
     .btn-login {

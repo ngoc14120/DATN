@@ -81,16 +81,25 @@ let updateUserData = (data) => {
     }
   });
 };
-let deleteUserData = (id) => {
+let deleteUserData = (userId) => {
   return new Promise(async (resolve, reject) => {
     try {
       let user = await db.User.findOne({
-        where: { id: id },
+        where: { id: userId },
       });
       if (user) {
-        await user.destroy();
+        await user.destroy({
+          where: { id: userId },
+        });
+        resolve({
+          errCode: 0,
+          message: "the user was deleted successfully",
+        });
       }
-      resolve();
+      resolve({
+        errCode: 2,
+        message: "the user isn't exits",
+      });
     } catch (e) {
       reject(e);
     }

@@ -5,11 +5,45 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import "./Login.scss";
 
+import { handleLoginApi } from "../../services/userService";
+
 class Login extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      userName: "",
+      passWord: "",
+      isShowPassword: false,
+      errMessage: "",
+    };
   }
-
+  handleOnChangUserName = (e) => {
+    this.setState({ userName: e.target.value });
+  };
+  handleOnChangPassWord = (e) => {
+    this.setState({ passWord: e.target.value });
+  };
+  handleClickLogin = async () => {
+    this.setState({ errMessage: "" });
+    try {
+      let data = await handleLoginApi(this.state.userName, this.state.passWord);
+      if (data && data.errCode !== 0) {
+        this.setState({ errMessage: data.message });
+      }
+      if (data && data.errCode === 0) {
+        this.props.userLoginSuccess(data.user);
+      }
+    } catch (e) {
+      if (e.response) {
+        if (e.response.data) {
+          this.setState({ errMessage: e.response.data.message });
+        }
+      }
+    }
+  };
+  handleShowHidePassword = () => {
+    this.setState({ isShowPassword: true });
+  };
   render() {
     return (
       <div className="login-background">
@@ -23,18 +57,45 @@ class Login extends Component {
                   type="email"
                   className="form-control"
                   placeholder="Điền email của bạn"
+                  onChange={(e) => {
+                    this.handleOnChangUserName(e);
+                  }}
                 />
               </div>
               <div className="login-input">
                 <label>PassWord:</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Điền password của bạn"
-                />
+                <div className="custom-input-password">
+                  <input
+                    type={this.state.isShowPassword ? "text" : "password"}
+                    className="form-control"
+                    placeholder="Điền password của bạn"
+                    onChange={(e) => {
+                      this.handleOnChangPassWord(e);
+                    }}
+                  />
+                  <span onClick={() => this.handleShowHidePassword()}>
+                    <i
+                      className={
+                        this.state.isShowPassword
+                          ? "fas fa-eye"
+                          : "fas fa-eye-slash"
+                      }
+                    />
+                  </span>
+                </div>
+              </div>
+              <div className="col-12" style={{ color: "red" }}>
+                {this.state.errMessage}
               </div>
               <div className="col-12">
-                <button className="btn-login">LogIn</button>
+                <button
+                  className="btn-login"
+                  onClick={() => {
+                    this.handleClickLogin();
+                  }}
+                >
+                  LogIn
+                </button>
               </div>
               <div className="col-12">
                 <span className="forgot-password">
@@ -42,11 +103,11 @@ class Login extends Component {
                 </span>
               </div>
               <div className="col-12 text-center mt-5">
-                <span className="text-orthe-login">Or Login With:</span>
+                <span className="text-other-login">Or Login With:</span>
               </div>
               <div className="col-12 social-login">
-                <i class="fab fa-google-plus google"></i>
-                <i class="fab fa-facebook facebook"></i>
+                <i className="fab fa-google-plus google"></i>
+                <i className="fab fa-facebook facebook"></i>
               </div>
             </div>
           </div>
@@ -65,9 +126,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) =>
-      dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
+    userLoginSuccess: (userInfo) =>
+      dispatch(actions.userLoginSuccess(userInfo)),
   };
 };
 
