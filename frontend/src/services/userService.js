@@ -19,6 +19,10 @@ const editUserService = (userId) => {
 const getAllCodeService = (inputtype) => {
   return axios.get(`/api/allcode?type=${inputtype}`);
 };
+
+const getDentistNewService = (limit) => {
+  return axios.get(`/api/get-dentist-new?limit=${limit}`);
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -26,4 +30,5 @@ export {
   deleteUserService,
   editUserService,
   getAllCodeService,
+  getDentistNewService,
 };

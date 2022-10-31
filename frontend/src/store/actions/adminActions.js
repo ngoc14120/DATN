@@ -5,6 +5,7 @@ import {
   getAllUsers,
   deleteUserService,
   editUserService,
+  getDentistNewService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -170,3 +171,26 @@ export const editUsersSuccess = () => ({
 export const editUsersFailed = () => ({
   type: actionTypes.EDIT_USER_FAILED,
 });
+
+export const fetchDentistNew = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({ type: actionTypes.FETCH_GENDER_START });
+      let res = await getDentistNewService("");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DENTIST_NEW_SUCCESS,
+          dataDentist: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_DENTIST_NEW_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_DENTIST_NEW_FAILED,
+      });
+    }
+  };
+};

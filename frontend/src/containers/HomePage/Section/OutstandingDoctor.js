@@ -4,9 +4,28 @@ import { connect } from "react-redux";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import * as actions from "../../../store/actions";
 
 class OutstandingDoctor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrDentists: [],
+    };
+  }
+  componentDidMount() {
+    this.props.loadDentistNew();
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.dentistNewRedux !== this.props.dentistNewRedux) {
+      this.setState({
+        arrDentists: this.props.dentistNewRedux,
+      });
+    }
+  }
   render() {
+    let dentists = this.state.arrDentists;
+    console.log(dentists);
     return (
       <div className="section-group section-outstandingdoctor">
         <div className="section-container">
@@ -16,72 +35,32 @@ class OutstandingDoctor extends Component {
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-img section-outstandingdoctor"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div>giáo sư ngọc</div>
-                    <div>trồng răng</div>
-                  </div>
-                </div>
-              </div>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-img section-outstandingdoctor"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div>giáo sư ngọc</div>
-                    <div>trồng răng</div>
-                  </div>
-                </div>
-              </div>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-img section-outstandingdoctor"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div>giáo sư ngọc</div>
-                    <div>trồng răng</div>
-                  </div>
-                </div>
-              </div>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-img section-outstandingdoctor"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div>giáo sư ngọc</div>
-                    <div>trồng răng</div>
-                  </div>
-                </div>
-              </div>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-img section-outstandingdoctor"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div>giáo sư ngọc</div>
-                    <div>trồng răng</div>
-                  </div>
-                </div>
-              </div>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-img section-outstandingdoctor"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div>giáo sư ngọc</div>
-                    <div>trồng răng</div>
-                  </div>
-                </div>
-              </div>
+              {dentists &&
+                dentists.length > 0 &&
+                dentists.map((item, index) => {
+                  let imageBase64 = "";
+                  if (item.image) {
+                    imageBase64 = new Buffer(item.image, "base64").toString(
+                      "binary"
+                    );
+                  }
+                  return (
+                    <div className="section-customize" key={index}>
+                      <div className="customize-border">
+                        <div className="outer-bg">
+                          <div
+                            className="bg-img section-outstandingdoctor"
+                            style={{ backgroundImage: `url(${imageBase64})` }}
+                          ></div>
+                        </div>
+                        <div className="position text-center">
+                          <div>giáo sư ngọc</div>
+                          <div>trồng răng</div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
             </Slider>
           </div>
         </div>
@@ -93,11 +72,14 @@ class OutstandingDoctor extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    dentistNewRedux: state.admin.dentistNew,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    loadDentistNew: () => dispatch(actions.fetchDentistNew()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);

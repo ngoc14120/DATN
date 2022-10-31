@@ -82,33 +82,3 @@
     }
   }
 }
-
-.home-header-banner {
-  height: 500px;
-  width: 100%;
-  display: flex;
-  overflow: hidden;
-  .banner-slider {
-    height: 100%;
-    width: 100%;
-    .banner-slider1 {
-      background: url("../../assets/images/slider1.jpg") center center no-repeat;
-      background-size: 100% 100%;
-      height: 100%;
-      width: 100%;
-    }
-    .banner-slider2 {
-      background: url("../../assets/images/slider2.jpg") center center no-repeat;
-      background-size: 100% 100%;
-      height: 100%;
-      width: 100%;
-    }
-    .banner-slider3 {
-      background: url("../../assets/images/slider_3.png") center center
-        no-repeat;
-      background-size: 100% 100%;
-      height: 100%;
-      width: 100%;
-    }
-  }
-}
