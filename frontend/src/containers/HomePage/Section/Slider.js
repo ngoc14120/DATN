@@ -53,12 +53,12 @@ class Slider extends Component {
         {dataSlider.map((obj, index) => {
           return (
             <div
-              key={obj.id}
               className={
                 this.state.slideIndex === index + 1
                   ? "slide active-anim"
                   : "slide"
               }
+              key={obj.id}
             >
               <img src={obj.img} />
             </div>
@@ -78,6 +78,7 @@ class Slider extends Component {
               className={
                 this.state.slideIndex === index + 1 ? "dot active" : "dot"
               }
+              key={index}
             ></div>
           ))}
         </div>

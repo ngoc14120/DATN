@@ -11,6 +11,7 @@ class HomeHeader extends Component {
     this.props.changeLanguageAppRedux(language);
   };
   render() {
+    let language = this.props.language;
     return (
       <React.Fragment>
         <div className="home-header-container">
@@ -71,14 +72,25 @@ class HomeHeader extends Component {
               </div>
               <div className="language">
                 <i className="fas fa-globe"></i>
-                <select
-                  name="language"
-                  className="language-item"
-                  onClick={(e) => this.changeLanguage(e.target.value)}
-                >
-                  <option value={LANGUAGES.VI}>VN</option>
-                  <option value={LANGUAGES.EN}>EN</option>
-                </select>
+                {language === LANGUAGES.VI ? (
+                  <select
+                    name="language"
+                    className="language-item"
+                    onClick={(e) => this.changeLanguage(e.target.value)}
+                  >
+                    <option value={LANGUAGES.VI}>VN</option>
+                    <option value={LANGUAGES.EN}>EN</option>
+                  </select>
+                ) : (
+                  <select
+                    name="language"
+                    className="language-item"
+                    onClick={(e) => this.changeLanguage(e.target.value)}
+                  >
+                    <option value={LANGUAGES.EN}>EN</option>
+                    <option value={LANGUAGES.VI}>VN</option>
+                  </select>
+                )}
               </div>
             </div>
           </div>
@@ -91,6 +103,7 @@ class HomeHeader extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    userInfo: state.user.userInfo,
     language: state.app.language,
   };
 };

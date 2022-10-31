@@ -10,7 +10,7 @@ let handleUserLogin = (email, password) => {
       let isExist = await checkUserEmail(email);
       if (isExist) {
         let user = await db.User.findOne({
-          attributes: ["email", "roleId", "password"],
+          attributes: ["email", "roleId", "password", "firstName"],
           where: { email: email },
           raw: true,
         });
@@ -107,8 +107,10 @@ let createNewUser = (data) => {
           lastName: data.lastName,
           address: data.address,
           phoneNumber: data.phoneNumber,
-          gender: data.gender === 1 ? true : false,
+          gender: data.gender,
           roleId: data.roleId,
+          positionId: data.positionId,
+          image: data.avatar,
         });
         resolve({
           errCode: 0,
@@ -149,6 +151,12 @@ let deleteUser = (userId) => {
 let editUser = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
+      if (!data.id || !data.roleId || !data.gender || !data.positionId) {
+        resolve({
+          errCode: 2,
+          message: "missing required parameters ",
+        });
+      }
       let user = await db.User.findOne({
         where: { id: data.id },
         raw: false,
@@ -158,6 +166,12 @@ let editUser = (data) => {
         user.lastName = data.lastName;
         user.address = data.address;
         user.phoneNumber = data.phoneNumber;
+        user.roleId = data.roleId;
+        user.positionId = data.positionId;
+        user.gender = data.gender;
+        if (data.avatar) {
+          user.image = data.avatar;
+        }
         await user.save();
         resolve({
           errCode: 0,
@@ -174,10 +188,35 @@ let editUser = (data) => {
     }
   });
 };
+
+let getAllCodeService = (type) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!type) {
+        resolve({
+          errCode: 1,
+          message: " missing required  parameters",
+        });
+      } else {
+        let res = {};
+
+        let allCode = await db.Allcode.findAll({
+          where: { type: type },
+        });
+        res.errCode = 0;
+        res.data = allCode;
+        resolve(res);
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   handleUserLogin: handleUserLogin,
   getAllUsers: getAllUsers,
   createNewUser: createNewUser,
   deleteUser: deleteUser,
   editUser: editUser,
+  getAllCodeService: getAllCodeService,
 };

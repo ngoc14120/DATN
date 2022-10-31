@@ -5,7 +5,7 @@ import HomeHeader from "./HomeHeader";
 import Specialty from "./Section/Specialty";
 import Slider from "./Section/Slider";
 import Clinic from "./Section/Clinic";
-import handbook from "./Section/handbook";
+// import Handbook from "./Section/handbook";
 import OutstandingDoctor from "./Section/OutstandingDoctor";
 import About from "./Section/About";
 import HomeFooter from "./HomeFooter";

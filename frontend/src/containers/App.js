@@ -14,7 +14,6 @@ import { path } from "../utils";
 
 import Home from "../routes/Home";
 import Login from "./auth/Login";
-import Header from "./Header/Header";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePage";
 
@@ -47,7 +46,6 @@ class App extends Component {
         <Router history={history}>
           <div className="main-container">
             <ConfirmModal />
-            {this.props.isLoggedIn && <Header />}
 
             <div className="content-container">
               <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
@@ -66,7 +64,7 @@ class App extends Component {
               </CustomScrollbars>
             </div>
 
-            <ToastContainer
+            {/* <ToastContainer
               className="toast-container"
               toastClassName="toast-item"
               bodyClassName="toast-item-body"
@@ -77,6 +75,17 @@ class App extends Component {
               closeOnClick={false}
               draggable={false}
               closeButton={<CustomToastCloseButton />}
+            /> */}
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
             />
           </div>
         </Router>

@@ -20,9 +20,9 @@ class About extends Component {
                 height="400"
                 src="https://www.youtube.com/embed/uWl6vpCbr-Q?list=RDfK-rkbOEIpA"
                 title="Bên Anh Đêm Nay REMIX- BINZ, JC HƯNG"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             </div>
             <div className="content-right">
