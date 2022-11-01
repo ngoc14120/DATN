@@ -10,6 +10,9 @@
     background: #eceaea;
   }
 }
+.slick-disabled {
+  display: none !important;
+}
 .slick-next {
   border: 1px solid green !important;
   right: -10px !important;
