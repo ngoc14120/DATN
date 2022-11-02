@@ -23,6 +23,12 @@ const getAllCodeService = (inputtype) => {
 const getDentistNewService = (limit) => {
   return axios.get(`/api/get-dentist-new?limit=${limit}`);
 };
+const getDentistAllService = () => {
+  return axios.get(`/api/get-dentist-all`);
+};
+const createDentistInfoService = (data) => {
+  return axios.post("/api/create-dentist-info", data);
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -31,4 +37,6 @@ export {
   editUserService,
   getAllCodeService,
   getDentistNewService,
+  getDentistAllService,
+  createDentistInfoService,
 };

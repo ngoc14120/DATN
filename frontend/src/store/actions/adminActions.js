@@ -6,6 +6,8 @@ import {
   deleteUserService,
   editUserService,
   getDentistNewService,
+  getDentistAllService,
+  createDentistInfoService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -175,7 +177,7 @@ export const editUsersFailed = () => ({
 export const fetchDentistNew = () => {
   return async (dispatch, getState) => {
     try {
-      dispatch({ type: actionTypes.FETCH_GENDER_START });
+      // dispatch({ type: actionTypes.FETCH_GENDER_START });
       let res = await getDentistNewService("");
       if (res && res.errCode === 0) {
         dispatch({
@@ -190,6 +192,51 @@ export const fetchDentistNew = () => {
     } catch (e) {
       dispatch({
         type: actionTypes.FETCH_DENTIST_NEW_FAILED,
+      });
+    }
+  };
+};
+export const fetchDentistAll = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDentistAllService();
+      console.log(res);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DENTIST_ALL_SUCCESS,
+          dataDentistAll: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_DENTIST_ALL_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_DENTIST_ALL_FAILED,
+      });
+    }
+  };
+};
+
+export const createDentistInfo = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await createDentistInfoService(data);
+      if (res && res.errCode === 0) {
+        toast.success("create dentist info success");
+        dispatch({
+          type: actionTypes.CREATE_DENTIST_INFO_SUCCESS,
+        });
+      } else {
+        toast.error("create dentist info error");
+        dispatch({
+          type: actionTypes.CREATE_DENTIST_INFO_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.CREATE_DENTIST_INFO_FAILED,
       });
     }
   };

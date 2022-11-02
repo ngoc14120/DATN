@@ -24,6 +24,15 @@ let initWebRouter = (app) => {
   router.get("/api/allcode", userControllers.getAllCode);
 
   router.get("/api/get-dentist-new", dentistController.handleGetDentistNew);
+  router.get("/api/get-dentist-all", dentistController.handleGetDentistAll);
+  router.post(
+    "/api/create-dentist-info",
+    dentistController.handleCreateDentistInfo
+  );
+  router.get(
+    "/api/get-detail-dentist-by-id",
+    dentistController.handleGetDetailDentistById
+  );
 
   return app.use("/", router);
 };

@@ -15,11 +15,6 @@ function handleEditorChange({ html, text }) {
   console.log("handleEditorChange", html, text);
 }
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
 class ManageDoctor extends Component {
   constructor(props) {
     super(props);
@@ -28,11 +23,33 @@ class ManageDoctor extends Component {
       contentHTML: "",
       description: "",
       selectedOption: "",
+      listDentist: [],
     };
   }
 
-  componentDidMount() {}
-  componentDidUpdate(prevProps, prevState, snapshot) {}
+  componentDidMount() {
+    this.props.fetchDentistAll();
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.allDentist !== this.props.allDentist) {
+      let dataSelect = this.buildDataDentistSelect(this.props.allDentist);
+      this.setState({
+        listDentist: dataSelect,
+      });
+    }
+  }
+  buildDataDentistSelect = (data) => {
+    let result = [];
+    if (data && data.length > 0) {
+      data.map((item, index) => {
+        let object = {};
+        object.label = `${item.lastName} ${item.firstName}`;
+        object.value = item.id;
+        result.push(object);
+      });
+    }
+    return result;
+  };
   handleEditorChange = ({ html, text }) => {
     this.setState({
       contentHTML: html,
@@ -48,11 +65,21 @@ class ManageDoctor extends Component {
     });
   };
   handleSaveDoctorInfo = () => {
+    this.props.createDentistInfo({
+      contentMarkdown: this.state.contentMarkdown,
+      contentHTML: this.state.contentHTML,
+      description: this.state.description,
+      doctorId: this.state.selectedOption.value,
+    });
+    this.setState({
+      contentMarkdown: "",
+      contentHTML: "",
+      description: "",
+      selectedOption: "",
+    });
     console.log(this.state);
   };
   render() {
-    let arrUsers = this.state.userRedux;
-    // console.log(this.state.userRedux);
     return (
       <React.Fragment>
         <div className="manage-doctor-container">
@@ -63,7 +90,7 @@ class ManageDoctor extends Component {
               <Select
                 value={this.state.selectedOption}
                 onChange={this.handleChange}
-                options={options}
+                options={this.state.listDentist}
               />
             </div>
             <div className="content-right">
@@ -98,6 +125,7 @@ class ManageDoctor extends Component {
 const mapStateToProps = (state) => {
   return {
     // listUsers: state.admin.users,
+    allDentist: state.admin.allDentist,
   };
 };
 
@@ -105,6 +133,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
     // deleteUserRedux: (id) => dispatch(actions.deleteUser(id)),
+    fetchDentistAll: () => dispatch(actions.fetchDentistAll()),
+    createDentistInfo: (data) => dispatch(actions.createDentistInfo(data)),
   };
 };
 
