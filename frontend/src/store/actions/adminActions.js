@@ -8,6 +8,7 @@ import {
   getDentistNewService,
   getDentistAllService,
   createDentistInfoService,
+  getDetailDentistInfoService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -237,6 +238,28 @@ export const createDentistInfo = (data) => {
     } catch (e) {
       dispatch({
         type: actionTypes.CREATE_DENTIST_INFO_FAILED,
+      });
+    }
+  };
+};
+
+export const fetchDetailDentistInfo = (id) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDetailDentistInfoService(id);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DETAIL_DENTIST_INFO_SUCCESS,
+          dataDetailDentist: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_DETAIL_DENTIST_INFO_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_DETAIL_DENTIST_INFO_FAILED,
       });
     }
   };

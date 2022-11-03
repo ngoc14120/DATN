@@ -8,6 +8,7 @@ const initialState = {
   users: [],
   dentistNew: [],
   allDentist: [],
+  detailDentist: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -78,6 +79,17 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_DENTIST_ALL_FAILED:
       state.allDentist = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_DETAIL_DENTIST_INFO_SUCCESS:
+      state.detailDentist = action.dataDetailDentist;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_DETAIL_DENTIST_INFO_FAILED:
+      state.detailDentist = [];
       return {
         ...state,
       };

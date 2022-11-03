@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as actions from "../../../store/actions";
+import { withRouter } from "react-router";
 
 class OutstandingDoctor extends Component {
   constructor(props) {
@@ -23,6 +24,10 @@ class OutstandingDoctor extends Component {
       });
     }
   }
+  handleClickDetailDentist = (dentist) => {
+    if (this.props.history)
+      this.props.history.push(`detail-dentist/${dentist.id}`);
+  };
   render() {
     let dentists = this.state.arrDentists;
     console.log(dentists);
@@ -45,7 +50,11 @@ class OutstandingDoctor extends Component {
                     );
                   }
                   return (
-                    <div className="section-customize" key={index}>
+                    <div
+                      className="section-customize"
+                      key={index}
+                      onClick={() => this.handleClickDetailDentist(item)}
+                    >
                       <div className="customize-border">
                         <div className="outer-bg">
                           <div
@@ -82,4 +91,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor)
+);

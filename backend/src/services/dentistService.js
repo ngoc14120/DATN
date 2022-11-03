@@ -83,7 +83,7 @@ let getDetailDentistById = (id) => {
       } else {
         let data = await db.User.findOne({
           where: { id: id },
-          attributes: { exclude: ["password", "image"] },
+          attributes: { exclude: ["password"] },
           include: [
             {
               model: db.Markdown,
@@ -95,9 +95,13 @@ let getDetailDentistById = (id) => {
               attributes: ["valueEn", "valueVi"],
             },
           ],
-          raw: true,
+          raw: false,
           nest: true,
         });
+        if (data.image) {
+          data.image = new Buffer(data.image, "base64").toString("binary");
+        }
+        if (!data) data = {};
         resolve({
           errCode: 0,
           data: data,

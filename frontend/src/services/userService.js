@@ -29,6 +29,10 @@ const getDentistAllService = () => {
 const createDentistInfoService = (data) => {
   return axios.post("/api/create-dentist-info", data);
 };
+
+const getDetailDentistInfoService = (id) => {
+  return axios.get(`/api/get-detail-dentist-by-id?id=${id}`);
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -39,4 +43,5 @@ export {
   getDentistNewService,
   getDentistAllService,
   createDentistInfoService,
+  getDetailDentistInfoService,
 };
