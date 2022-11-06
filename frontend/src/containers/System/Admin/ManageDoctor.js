@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./ManageDoctor.scss";
 import * as actions from "../../../store/actions";
-
+import { CRUD_ACTION } from "../../../utils/constant";
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
@@ -24,10 +24,11 @@ class ManageDoctor extends Component {
       description: "",
       selectedOption: "",
       listDentist: [],
+      action: "",
     };
   }
 
-  componentDidMount() {
+  componentDidMount(selectedOption) {
     this.props.fetchDentistAll();
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -56,8 +57,27 @@ class ManageDoctor extends Component {
       contentMarkdown: text,
     });
   };
-  handleChange = (selectedOption) => {
+  handleChangeSelect = async (selectedOption) => {
     this.setState({ selectedOption });
+    await this.props.fetchDetailDentistInfo(selectedOption.value);
+    let { detailDentist } = this.props;
+    console.log(detailDentist);
+    if (detailDentist && detailDentist.Markdown) {
+      let markdown = detailDentist.Markdown;
+      this.setState({
+        contentMarkdown: markdown.contentMarkdown,
+        contentHTML: markdown.contentHTML,
+        description: markdown.description,
+        action: CRUD_ACTION.EDIT,
+      });
+    } else {
+      this.setState({
+        contentMarkdown: "",
+        contentHTML: "",
+        description: "",
+        action: CRUD_ACTION.CREATE,
+      });
+    }
   };
   handleOnchangeDesc = (e) => {
     this.setState({
@@ -70,16 +90,19 @@ class ManageDoctor extends Component {
       contentHTML: this.state.contentHTML,
       description: this.state.description,
       doctorId: this.state.selectedOption.value,
+      action: this.state.action,
     });
+    console.log(this.state);
     this.setState({
       contentMarkdown: "",
       contentHTML: "",
       description: "",
       selectedOption: "",
     });
-    console.log(this.state);
   };
   render() {
+    console.log(this.props.allDentist);
+    console.log("detai", this.props.detailDentist);
     return (
       <React.Fragment>
         <div className="manage-doctor-container">
@@ -89,7 +112,7 @@ class ManageDoctor extends Component {
               <label> Chonj bac si</label>
               <Select
                 value={this.state.selectedOption}
-                onChange={this.handleChange}
+                onChange={this.handleChangeSelect}
                 options={this.state.listDentist}
               />
             </div>
@@ -108,13 +131,22 @@ class ManageDoctor extends Component {
               style={{ height: "400px" }}
               renderHTML={(text) => mdParser.render(text)}
               onChange={this.handleEditorChange}
+              value={this.state.contentMarkdown}
             />
           </div>
           <button
-            className="btn btn-warning"
+            className={
+              this.state.action === CRUD_ACTION.EDIT
+                ? "btn btn-warning px-3"
+                : "btn btn-primary px-3"
+            }
             onClick={() => this.handleSaveDoctorInfo()}
           >
-            LUU THONG TIN
+            {this.state.action === CRUD_ACTION.EDIT ? (
+              <span>CẬP NHẬT THÔNG TIN</span>
+            ) : (
+              <span>LƯU THÔNG TIN</span>
+            )}
           </button>
         </div>
       </React.Fragment>
@@ -124,15 +156,15 @@ class ManageDoctor extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // listUsers: state.admin.users,
+    detailDentist: state.admin.detailDentist,
     allDentist: state.admin.allDentist,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
-    // deleteUserRedux: (id) => dispatch(actions.deleteUser(id)),
+    fetchDetailDentistInfo: (id) =>
+      dispatch(actions.fetchDetailDentistInfo(id)),
     fetchDentistAll: () => dispatch(actions.fetchDentistAll()),
     createDentistInfo: (data) => dispatch(actions.createDentistInfo(data)),
   };

@@ -9,6 +9,8 @@ import {
   getDentistAllService,
   createDentistInfoService,
   getDetailDentistInfoService,
+  createScheduleDentistService,
+  getScheduleDentistByDateService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -201,7 +203,6 @@ export const fetchDentistAll = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getDentistAllService();
-      console.log(res);
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.FETCH_DENTIST_ALL_SUCCESS,
@@ -260,6 +261,73 @@ export const fetchDetailDentistInfo = (id) => {
     } catch (e) {
       dispatch({
         type: actionTypes.FETCH_DETAIL_DENTIST_INFO_FAILED,
+      });
+    }
+  };
+};
+
+export const fetchScheduleTimeAll = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeService("TIME");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+          dataTime: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+      });
+    }
+  };
+};
+
+export const createScheduleDentist = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await createScheduleDentistService(data);
+      if (res && res.errCode === 0) {
+        toast.success("create dentist info success");
+        dispatch({
+          type: actionTypes.CREATE_SCHEDULE_DENTIST_SUCCESS,
+        });
+      } else {
+        toast.error("create dentist info error");
+        dispatch({
+          type: actionTypes.CREATE_SCHEDULE_DENTIST_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.CREATE_SCHEDULE_DENTIST_FAILED,
+      });
+    }
+  };
+};
+
+export const fetchScheduleDentistByDate = (doctorId, date) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getScheduleDentistByDateService(doctorId, date);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_SCHEDULE_DENTIST_BY_DATE_SUCCESS,
+          dataScheduleDate: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_SCHEDULE_DENTIST_BY_DATE_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_SCHEDULE_DENTIST_BY_DATE_FAILED,
       });
     }
   };

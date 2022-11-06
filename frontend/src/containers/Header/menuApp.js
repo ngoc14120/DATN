@@ -19,6 +19,10 @@ export const adminMenu = [
         name: "menu.admin.manage-admin",
         link: "/system/user-admin",
       },
+      {
+        name: "Quản lý lịch khám",
+        link: "/dentist/manage-schedule",
+      },
     ],
   },
   {
@@ -48,6 +52,18 @@ export const adminMenu = [
       {
         name: "menu.admin.manage-handbook",
         link: "/system/manage-handbook",
+      },
+    ],
+  },
+];
+export const dentistMenu = [
+  {
+    //quan ly ng dung
+    name: "menu.admin.manage-user",
+    menus: [
+      {
+        name: "Quản lý lịch khám",
+        link: "/dentist/manage-schedule",
       },
     ],
   },

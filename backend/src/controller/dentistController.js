@@ -49,9 +49,37 @@ let handleGetDetailDentistById = async (req, res) => {
     });
   }
 };
+let handleCreateScheduleDentist = async (req, res) => {
+  try {
+    let response = await dentistService.CreateScheduleDentist(req.body);
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
+
+let handleGetScheduleDentistByDate = async (req, res) => {
+  try {
+    let response = await dentistService.GetScheduleDentistByDate(
+      req.query.doctorId,
+      req.query.date
+    );
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
 module.exports = {
   handleGetDentistNew: handleGetDentistNew,
   handleGetDentistAll: handleGetDentistAll,
   handleCreateDentistInfo: handleCreateDentistInfo,
   handleGetDetailDentistById: handleGetDetailDentistById,
+  handleCreateScheduleDentist: handleCreateScheduleDentist,
+  handleGetScheduleDentistByDate: handleGetScheduleDentistByDate,
 };

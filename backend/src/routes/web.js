@@ -34,6 +34,11 @@ let initWebRouter = (app) => {
     dentistController.handleGetDetailDentistById
   );
 
+  // router.post(
+  //   "/api/create-schedule-dentist",
+  //   dentistController.handleCreateScheduleDentist
+  // );
+
   return app.use("/", router);
 };
 

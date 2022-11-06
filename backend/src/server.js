@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import viewEngine from "./config/viewEngine";
 import initWebRouter from "./routes/web";
+import dentistRouter from "./routes/dentist";
 import connectDB from "./config/connectDB";
 import cors from "cors";
 require("dotenv").config();
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 viewEngine(app);
 initWebRouter(app);
+dentistRouter(app);
 
 connectDB();
 
