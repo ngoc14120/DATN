@@ -11,6 +11,7 @@ const initialState = {
   detailDentist: [],
   allScheduleTime: [],
   allScheduleDate: [],
+  allRequiredDentistInfo: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -114,6 +115,17 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_SCHEDULE_DENTIST_BY_DATE_FAILED:
       state.allScheduleDate = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_REQUIRED_DENTIST_INFO_SUCCESS:
+      state.allRequiredDentistInfo = action.allRequiredData;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_REQUIRED_DENTIST_INFO_FAILED:
+      state.allRequiredDentistInfo = [];
       return {
         ...state,
       };

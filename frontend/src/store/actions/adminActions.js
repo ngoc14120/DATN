@@ -332,3 +332,40 @@ export const fetchScheduleDentistByDate = (doctorId, date) => {
     }
   };
 };
+
+export const fetchRequiredDentistInfoStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({ type: actionTypes.FETCH_REQUIRED_DENTIST_INFO_START });
+      let resPrice = await getAllCodeService("PRICE");
+      let resPayment = await getAllCodeService("PAYMENT");
+      let resProvince = await getAllCodeService("PROVINCE");
+      if (
+        resPrice &&
+        resPrice.errCode === 0 &&
+        resPayment &&
+        resPayment.errCode === 0 &&
+        resProvince &&
+        resProvince.errCode === 0
+      ) {
+        let data = {
+          resPrice: resPrice.data,
+          resPayment: resPayment.data,
+          resProvince: resProvince.data,
+        };
+        dispatch(fetchRequiredDentistInfoSuccess(data));
+      } else {
+        dispatch(fetchRequiredDentistInfoFailed());
+      }
+    } catch (e) {
+      dispatch(fetchRequiredDentistInfoFailed());
+    }
+  };
+};
+export const fetchRequiredDentistInfoSuccess = (data) => ({
+  type: actionTypes.FETCH_REQUIRED_DENTIST_INFO_SUCCESS,
+  allRequiredData: data,
+});
+export const fetchRequiredDentistInfoFailed = () => ({
+  type: actionTypes.FETCH_REQUIRED_DENTIST_INFO_FAILED,
+});

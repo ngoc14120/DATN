@@ -79,6 +79,7 @@ class ManageSchedule extends Component {
       toast.error("invalid date");
       return;
     }
+
     if (selectedDentist && _.isEmpty(selectedDentist)) {
       toast.error("invalid select dentist");
       return;
@@ -108,6 +109,7 @@ class ManageSchedule extends Component {
   };
   render() {
     let { rangeTime, selectedDentist } = this.state;
+    let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
     return (
       <React.Fragment>
         <div className="manage-schedule-container">
@@ -127,7 +129,7 @@ class ManageSchedule extends Component {
               onChange={this.handleOnchangeDatePick}
               className="from-control"
               value={this.state.currentDate}
-              minDate={new Date()}
+              minDate={yesterday}
             />
           </div>
           <div>

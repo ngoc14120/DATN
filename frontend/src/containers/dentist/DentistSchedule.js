@@ -17,9 +17,24 @@ class DentistSchedule extends Component {
 
   componentDidMount() {
     // let { language } = this.props;
-    this.setArrDays();
+    let allDays = this.getArrDays();
+    this.setState({
+      allDays: allDays,
+    });
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.doctorIdFromParent !== this.props.doctorIdFromParent) {
+      let allDays = this.getArrDays();
+      this.props.fetchScheduleDentistByDate(
+        this.props.doctorIdFromParent,
+        allDays[0].value
+      );
+      this.setState({
+        allAvailableTime: this.props.allScheduleDate
+          ? this.props.allScheduleDate
+          : [],
+      });
+    }
     if (prevProps.allScheduleDate !== this.props.allScheduleDate) {
       this.setState({
         allAvailableTime: this.props.allScheduleDate,
@@ -29,16 +44,22 @@ class DentistSchedule extends Component {
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  setArrDays = () => {
+  getArrDays = () => {
     let allDays = [];
     for (let i = 0; i < 7; i++) {
       let object = {};
-      let labelVi = moment(new Date()).add(i, "days").format("dddd - DD/MM");
-      object.label = this.capitalizeFirstLetter(labelVi);
+      if (i === 0) {
+        let ddMM = moment(new Date()).format("DD/MM");
+        let today = `Hôm nay - ${ddMM}`;
+        object.label = today;
+      } else {
+        let labelVi = moment(new Date()).add(i, "days").format("dddd - DD/MM");
+        object.label = this.capitalizeFirstLetter(labelVi);
+      }
       object.value = moment(new Date()).add(i, "days").startOf("day").valueOf();
       allDays.push(object);
     }
-    this.setState({ allDays: allDays });
+    return allDays;
   };
   handleOnChangeSelect = (e) => {
     let { doctorIdFromParent } = this.props;

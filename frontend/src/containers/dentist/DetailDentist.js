@@ -10,12 +10,16 @@ class DetailDentist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allDays: [],
+      arrDetailDentist: [],
+      currentDentistId: -1,
     };
   }
 
   componentDidMount() {
     let id = this.props.match.params.id;
+    this.setState({
+      currentDentistId: id,
+    });
     this.props.fetchDetailDentistInfo(id);
   }
   // componentDidUpdate(prevProps, prevState, snapshot) {
@@ -28,11 +32,7 @@ class DetailDentist extends Component {
       <div>
         <HomeHeader />
         <div>sdsdsdsds</div>
-        <DentistSchedule
-          doctorIdFromParent={
-            detailDentist && detailDentist.id ? detailDentist.id : -1
-          }
-        />
+        <DentistSchedule doctorIdFromParent={this.state.currentDentistId} />
       </div>
 
       // <>
