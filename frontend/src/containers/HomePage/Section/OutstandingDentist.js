@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import "./OutstandingDoctor.scss";
+import "./OutstandingDentist.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as actions from "../../../store/actions";
 import { withRouter } from "react-router";
 
-class OutstandingDoctor extends Component {
+class OutstandingDentist extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,18 +32,30 @@ class OutstandingDoctor extends Component {
     let dentists = this.state.arrDentists;
     console.log(dentists);
     return (
-      <div className="section-group section-outstandingdoctor">
-        <div className="section-container">
-          <div className="section-header">
-            <span className="title-section">Bác Sĩ Nổi Bật</span>
-            <button className="btn-section">XEM THÊM</button>
+      <div className="section-outstanding-dentist">
+        <div className="outstanding-dentist-container">
+          <div className="outstanding-dentist-header">
+            <div className="title-outstanding-dentist">
+              <span className="title-header">Nha sĩ có trình độ cao</span>
+              <p className="title-info">
+                Chúng tôi đã xây dựng nha khoa của mình dựa trên những trụ cột
+                vững chắc của 22 bác sĩ phẫu thuật MDS. Đội ngũ của chúng tôi có
+                các chuyên gia dày dặn kinh nghiệm trong nhiều năm.
+              </p>
+            </div>
           </div>
-          <div className="section-body">
+          <div className="outstanding-dentist-body">
             <Slider {...this.props.settings}>
               {dentists &&
                 dentists.length > 0 &&
                 dentists.map((item, index) => {
                   let imageBase64 = "";
+                  let name =
+                    item.positionData.valueVi +
+                    " " +
+                    item.lastName +
+                    " " +
+                    item.firstName;
                   if (item.image) {
                     imageBase64 = new Buffer(item.image, "base64").toString(
                       "binary"
@@ -51,7 +63,7 @@ class OutstandingDoctor extends Component {
                   }
                   return (
                     <div
-                      className="section-customize"
+                      className="outstanding-dentist-customize"
                       key={index}
                       onClick={() => this.handleClickDetailDentist(item)}
                     >
@@ -63,8 +75,7 @@ class OutstandingDoctor extends Component {
                           ></div>
                         </div>
                         <div className="position text-center">
-                          <div>giáo sư ngọc</div>
-                          <div>trồng răng</div>
+                          <div>{name}</div>
                         </div>
                       </div>
                     </div>
@@ -92,5 +103,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor)
+  connect(mapStateToProps, mapDispatchToProps)(OutstandingDentist)
 );

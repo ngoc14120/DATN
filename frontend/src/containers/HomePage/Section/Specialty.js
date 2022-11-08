@@ -11,7 +11,9 @@ class Specialty extends Component {
       <div className="section-specialty">
         <div className="specialty-container">
           <div className="specialty-header">
-            <span className="title-specialty">Dịch Vụ</span>
+            <span className="title-specialty">
+              Phòng khám nha khoa có những dịch vụ nào
+            </span>
           </div>
           <div className="specialty-body row">
             <div className="specialty-customize col-3 p-1">

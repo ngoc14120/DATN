@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import "./About.scss";
+import "./About.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,9 +10,6 @@ class About extends Component {
     return (
       <div className="section-group section-about">
         <div className="section-container">
-          <div className="section-about-header">
-            Truyền thông nói gì về Booking
-          </div>
           <div className="section-about-content">
             <div className="content-left">
               <iframe
@@ -26,32 +23,25 @@ class About extends Component {
               ></iframe>
             </div>
             <div className="content-right">
-              <ul>
-                <li>
-                  <img
-                    src="https://nhakhoadongnam.com/wp-content/uploads/2015/08/enexpress-dua-tin-nha-khoa-dong-nam.png"
-                    alt=""
-                  />
-                </li>
-                <li>
-                  <img
-                    src="https://nhakhoadongnam.com/wp-content/uploads/2015/08/tuoi-tre-dua-tin-nha-khoa-dong-nam.png"
-                    alt=""
-                  />
-                </li>
-                <li>
-                  <img
-                    src="https://nhakhoadongnam.com/wp-content/uploads/2018/08/zing.vn-dua-tin-nha-khoa-dong-nam.png"
-                    alt=""
-                  />
-                </li>
-                <li>
-                  <img
-                    src="https://nhakhoadongnam.com/wp-content/uploads/2020/06/logo-bao-suc-khoe-doi-song.jpg"
-                    alt=""
-                  />
-                </li>
-              </ul>
+              <span className="about-description-header">
+                Lý do nào để đến Phòng khám của chúng tôi
+              </span>
+              <p className="about-description-title">
+                Nha khoa được thành lập vào năm 2005 bởi Richard Seth với tầm
+                nhìn phát triển cơ sở hạ tầng chăm sóc sức khỏe chất lượng cao
+                và giá cả phải chăng Chicago.
+              </p>
+              <div className="about-description-info">
+                <p>
+                  Chúng tôi là một chuỗi phòng khám nha khoa với sự điều trị
+                  chuyên sâu của các bác sĩ giàu kinh nghiệm. Chúng tôi cung cấp
+                  toàn bộ các phương pháp điều trị và quy trình nha khoa với mức
+                  giá minh bạch và được niêm yết theo tiêu chuẩn cho tất cả bệnh
+                  nhân. Chúng tôi cung cấp toàn bộ các phương pháp điều trị và
+                  quy trình nha khoa với mức giá minh bạch và được niêm yết theo
+                  tiêu chuẩn cho tất cả bệnh nhân.
+                </p>
+              </div>
             </div>
           </div>
         </div>

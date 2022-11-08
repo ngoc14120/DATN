@@ -6,7 +6,7 @@ import Specialty from "./Section/Specialty";
 import Slider from "./Section/Slider";
 import Clinic from "./Section/Clinic";
 // import Handbook from "./Section/handbook";
-import OutstandingDoctor from "./Section/OutstandingDoctor";
+import OutstandingDentist from "./Section/OutstandingDentist";
 import About from "./Section/About";
 import HomeFooter from "./HomeFooter";
 import "./HomePage.scss";
@@ -27,7 +27,7 @@ class HomePage extends Component {
         <Slider />
         <Specialty settings={settings} />
         <Clinic settings={settings} />
-        <OutstandingDoctor settings={settings} />
+        <OutstandingDentist settings={settings} />
         <Handbook settings={settings} />
         <About />
         <HomeFooter />

@@ -17,237 +17,38 @@ class Clinic extends Component {
     return (
       <div className="section-clinic">
         <div className="clinic-container">
-          <div className="clinic-header">
-            <span className="title-clinic">Phòng Khám</span>
-            <button className="btn-clinic">XEM THÊM</button>
-          </div>
           <div className="clinic-body">
-            <Slider {...settings}>
-              <div className="clinic-customize">
-                <div className="bg-img clinic-image"></div>
-                <div className="clinic-description">
-                  <span className="clinic-description-header">
-                    Phòng khám nha khoa Morden
-                  </span>
-                  <p className="clinic-description-title">
-                    Tại Phòng Khám Đa Khoa chúng tôi cung cấp đa dạng các dịch
-                    vụ nha khoa, bạn sẽ được cung cấp kế hoạch điều trị toàn
-                    diện trước khi bắt đầu thực hiện bất kỳ dịch vụ nha khoa
-                    nào. .
+            <div className="clinic-customize">
+              <div className="bg-img clinic-image"></div>
+              <div className="clinic-description">
+                <span className="clinic-description-header">
+                  Phòng khám nha khoa Morden
+                </span>
+                <p className="clinic-description-title">
+                  Tại Phòng Khám Đa Khoa chúng tôi cung cấp đa dạng các dịch vụ
+                  nha khoa, bạn sẽ được cung cấp kế hoạch điều trị toàn diện
+                  trước khi bắt đầu thực hiện bất kỳ dịch vụ nha khoa nào. .
+                </p>
+                <div className="clinic-description-info">
+                  <p>
+                    <i className="fas fa-arrow-right icon"></i> Bác sĩ nha khoa
+                    được chứng nhận
                   </p>
-                  <div className="clinic-description-info">
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Bác sĩ nha
-                      khoa được chứng nhận
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                  </div>
+                  <p>
+                    <i className="fas fa-arrow-right icon"></i> Thiết bị công
+                    nghệ mới nhất
+                  </p>
+                  <p>
+                    <i className="fas fa-arrow-right icon"></i> Thiết bị công
+                    nghệ mới nhất
+                  </p>
+                  <p>
+                    <i className="fas fa-arrow-right icon"></i> Thiết bị công
+                    nghệ mới nhất
+                  </p>
                 </div>
               </div>
-              <div className="clinic-customize">
-                <div className="bg-img clinic-image"></div>
-                <div className="clinic-description">
-                  <span className="clinic-description-header">
-                    Phòng khám nha khoa Morden
-                  </span>
-                  <p className="clinic-description-title">
-                    Tại Phòng Khám Đa Khoa chúng tôi cung cấp đa dạng các dịch
-                    vụ nha khoa, bạn sẽ được cung cấp kế hoạch điều trị toàn
-                    diện trước khi bắt đầu thực hiện bất kỳ dịch vụ nha khoa
-                    nào. .
-                  </p>
-                  <div className="clinic-description-info">
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Bác sĩ nha
-                      khoa được chứng nhận
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="clinic-customize">
-                <div className="bg-img clinic-image"></div>
-                <div className="clinic-description">
-                  <span className="clinic-description-header">
-                    Phòng khám nha khoa Morden
-                  </span>
-                  <p className="clinic-description-title">
-                    Tại Phòng Khám Đa Khoa chúng tôi cung cấp đa dạng các dịch
-                    vụ nha khoa, bạn sẽ được cung cấp kế hoạch điều trị toàn
-                    diện trước khi bắt đầu thực hiện bất kỳ dịch vụ nha khoa
-                    nào. .
-                  </p>
-                  <div className="clinic-description-info">
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Bác sĩ nha
-                      khoa được chứng nhận
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="clinic-customize">
-                <div className="bg-img clinic-image"></div>
-                <div className="clinic-description">
-                  <span className="clinic-description-header">
-                    Phòng khám nha khoa Morden
-                  </span>
-                  <p className="clinic-description-title">
-                    Tại Phòng Khám Đa Khoa chúng tôi cung cấp đa dạng các dịch
-                    vụ nha khoa, bạn sẽ được cung cấp kế hoạch điều trị toàn
-                    diện trước khi bắt đầu thực hiện bất kỳ dịch vụ nha khoa
-                    nào. .
-                  </p>
-                  <div className="clinic-description-info">
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Bác sĩ nha
-                      khoa được chứng nhận
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="clinic-customize">
-                <div className="bg-img clinic-image"></div>
-                <div className="clinic-description">
-                  <span className="clinic-description-header">
-                    Phòng khám nha khoa Morden
-                  </span>
-                  <p className="clinic-description-title">
-                    Tại Phòng Khám Đa Khoa chúng tôi cung cấp đa dạng các dịch
-                    vụ nha khoa, bạn sẽ được cung cấp kế hoạch điều trị toàn
-                    diện trước khi bắt đầu thực hiện bất kỳ dịch vụ nha khoa
-                    nào. .
-                  </p>
-                  <div className="clinic-description-info">
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Bác sĩ nha
-                      khoa được chứng nhận
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="clinic-customize">
-                <div className="bg-img clinic-image"></div>
-                <div className="clinic-description">
-                  <span className="clinic-description-header">
-                    Phòng khám nha khoa Morden
-                  </span>
-                  <p className="clinic-description-title">
-                    Tại Phòng Khám Đa Khoa chúng tôi cung cấp đa dạng các dịch
-                    vụ nha khoa, bạn sẽ được cung cấp kế hoạch điều trị toàn
-                    diện trước khi bắt đầu thực hiện bất kỳ dịch vụ nha khoa
-                    nào. .
-                  </p>
-                  <div className="clinic-description-info">
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Bác sĩ nha
-                      khoa được chứng nhận
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="clinic-customize">
-                <div className="bg-img clinic-image"></div>
-                <div className="clinic-description">
-                  <span className="clinic-description-header">
-                    Phòng khám nha khoa Morden
-                  </span>
-                  <p className="clinic-description-title">
-                    Tại Phòng Khám Đa Khoa chúng tôi cung cấp đa dạng các dịch
-                    vụ nha khoa, bạn sẽ được cung cấp kế hoạch điều trị toàn
-                    diện trước khi bắt đầu thực hiện bất kỳ dịch vụ nha khoa
-                    nào. .
-                  </p>
-                  <div className="clinic-description-info">
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Bác sĩ nha
-                      khoa được chứng nhận
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                    <p>
-                      <i className="fas fa-arrow-right icon"></i> Thiết bị công
-                      nghệ mới nhất
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Slider>
+            </div>
           </div>
         </div>
       </div>
