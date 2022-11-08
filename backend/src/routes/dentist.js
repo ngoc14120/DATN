@@ -14,7 +14,10 @@ let dentistRouter = (app) => {
     "/api/get-schedule-dentist-by-date",
     dentistController.handleGetScheduleDentistByDate
   );
-
+  router.get(
+    "/api/get-extra-info-dentist-by-id",
+    dentistController.handleGetExtraInfoDentistById
+  );
   return app.use("/", router);
 };
 

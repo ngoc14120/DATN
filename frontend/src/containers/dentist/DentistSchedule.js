@@ -5,6 +5,7 @@ import * as actions from "../../store/actions";
 import HomeHeader from "../HomePage/HomeHeader";
 import moment from "moment";
 import localization from "moment/locale/vi";
+import BookingModal from "./modal/BookingModal";
 
 class DentistSchedule extends Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class DentistSchedule extends Component {
     this.state = {
       allDays: [],
       allAvailableTime: [],
+      isOpenModalBooking: false,
+      dataScheduleTimeModal: {},
     };
   }
 
@@ -69,10 +72,25 @@ class DentistSchedule extends Component {
       this.props.fetchScheduleDentistByDate(doctorId, date);
     }
   };
+  handleClickBookingScheduleTime = (time) => {
+    this.setState({
+      isOpenModalBooking: true,
+      dataScheduleTimeModal: time,
+    });
+  };
 
+  closeBookingModal = () => {
+    this.setState({
+      isOpenModalBooking: false,
+    });
+  };
   render() {
-    let { allDays, allAvailableTime } = this.state;
-    console.log(allAvailableTime);
+    let {
+      allDays,
+      allAvailableTime,
+      dataScheduleTimeModal,
+      isOpenModalBooking,
+    } = this.state;
     return (
       <div>
         <select onChange={(e) => this.handleOnChangeSelect(e)}>
@@ -89,10 +107,24 @@ class DentistSchedule extends Component {
         <div>
           {allAvailableTime && allAvailableTime.length > 0
             ? allAvailableTime.map((item, index) => {
-                return <button key={index}>{item.timeTypeData.valueVi}</button>;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      this.handleClickBookingScheduleTime(item);
+                    }}
+                  >
+                    {item.timeTypeData.valueVi}
+                  </button>
+                );
               })
             : "khoong co lixh"}
         </div>
+        <BookingModal
+          isOpenModal={isOpenModalBooking}
+          closeBookingModal={this.closeBookingModal}
+          dataTime={dataScheduleTimeModal}
+        />
       </div>
       // <>
       //   {/* <HomeHeader /> */}

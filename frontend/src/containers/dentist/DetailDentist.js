@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import HomeHeader from "../HomePage/HomeHeader";
 import DentistSchedule from "./DentistSchedule";
-
+import DentistExtraInfo from "./DentistExtraInfo";
 class DetailDentist extends Component {
   constructor(props) {
     super(props);
@@ -26,13 +26,14 @@ class DetailDentist extends Component {
   //   if(prevProps)
   // }
   render() {
-    console.log(this.props.detailDentist);
+    // console.log(this.props.detailDentist);
     let { detailDentist } = this.props;
     return (
       <div>
         <HomeHeader />
         <div>sdsdsdsds</div>
         <DentistSchedule doctorIdFromParent={this.state.currentDentistId} />
+        <DentistExtraInfo doctorIdFromParent={this.state.currentDentistId} />
       </div>
 
       // <>

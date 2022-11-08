@@ -2,6 +2,7 @@ import actionTypes from "../actions/actionTypes";
 
 const initialState = {
   isLoadingGenders: false,
+  isCreateDentistInfo: -1,
   genders: [],
   roles: [],
   positions: [],
@@ -12,6 +13,7 @@ const initialState = {
   allScheduleTime: [],
   allScheduleDate: [],
   allRequiredDentistInfo: [],
+  extraInfoDentist: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -126,6 +128,25 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_REQUIRED_DENTIST_INFO_FAILED:
       state.allRequiredDentistInfo = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.CREATE_DENTIST_INFO_SUCCESS:
+      state.isCreateDentistInfo = 0;
+      console.log(state.isCreateDentistInfo);
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_SUCCESS:
+      state.extraInfoDentist = action.dataExtraDentist;
+      console.log(state.extraInfoDentist);
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_FAILED:
+      state.extraInfoDentist = [];
       return {
         ...state,
       };

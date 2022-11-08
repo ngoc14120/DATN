@@ -17,10 +17,10 @@ class HomeHeader extends Component {
         <div className="home-header-container">
           <div className="home-header-content">
             <div className="left-content">
-              <i className="fas fa-bars"></i>
+              {/* <i className="fas fa-bars"></i> */}
               <div className="group-logo-title">
                 <div className="header-logo"></div>
-                <span>BookingDentistry</span>
+                {/* <span>BookingDentistry</span> */}
               </div>
             </div>
             <div className="center-content">

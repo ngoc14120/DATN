@@ -5,7 +5,6 @@ import _ from "lodash";
 const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 
 let getDentistNew = (limitInput) => {
-  console.log(limitInput);
   return new Promise(async (resolve, reject) => {
     try {
       let users = await db.User.findAll({
@@ -50,6 +49,60 @@ let getDentistAll = () => {
   });
 };
 
+// let createNewInfoDentist = (data) => {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       console.log(data);
+//       for (let key in data) {
+//         if (!data[key]) {
+//           resolve({
+//             errCode: 1,
+//             message: "missing parameter ",
+//           });
+//           return;
+//         } else {
+//           if (data[key] === "CREATE") {
+//             await db.Markdown.create({
+//               contentHTML: data.contentHTML,
+//               contentMarkdown: data.contentMarkdown,
+//               description: data.description,
+//               doctorId: data.doctorId,
+//             });
+//             resolve({
+//               errCode: 0,
+//               message: "ok",
+//             });
+//           } else if (data[key] === "EDIT") {
+//             let dentistMarkdown = await db.Markdown.findOne({
+//               where: { doctorId: data.doctorId },
+//               raw: false,
+//             });
+//             console.log(dentistMarkdown);
+//             if (dentistMarkdown) {
+//               dentistMarkdown.contentHTML = data.contentHTML;
+//               dentistMarkdown.contentMarkdown = data.contentMarkdown;
+//               dentistMarkdown.description = data.description;
+
+//               await dentistMarkdown.save();
+//               resolve({
+//                 errCode: 0,
+//                 message: "update successfully",
+//               });
+//             } else {
+//               resolve({
+//                 errCode: 1,
+//                 message: "user not found",
+//               });
+//             }
+//           }
+//         }
+//       }
+//     } catch (e) {
+//       reject(e);
+//     }
+//   });
+// };
+
 let createNewInfoDentist = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -57,7 +110,13 @@ let createNewInfoDentist = (data) => {
         !data.contentHTML ||
         !data.contentMarkdown ||
         !data.doctorId ||
-        !data.action
+        !data.action ||
+        !data.selectedPrice ||
+        !data.selectedPayment ||
+        !data.selectedProvince ||
+        !data.nameClinic ||
+        !data.addressClinic ||
+        !data.note
       ) {
         resolve({
           errCode: 1,
@@ -71,33 +130,47 @@ let createNewInfoDentist = (data) => {
             description: data.description,
             doctorId: data.doctorId,
           });
-          resolve({
-            errCode: 0,
-            message: "ok",
-          });
         } else if (data.action === "EDIT") {
           let dentistMarkdown = await db.Markdown.findOne({
             where: { doctorId: data.doctorId },
             raw: false,
           });
-          console.log(dentistMarkdown);
           if (dentistMarkdown) {
             dentistMarkdown.contentHTML = data.contentHTML;
             dentistMarkdown.contentMarkdown = data.contentMarkdown;
             dentistMarkdown.description = data.description;
 
             await dentistMarkdown.save();
-            resolve({
-              errCode: 0,
-              message: "update successfully",
-            });
-          } else {
-            resolve({
-              errCode: 1,
-              message: "user not found",
-            });
           }
         }
+        let dentistInfo = await db.Dentist_info.findOne({
+          where: { doctorId: data.doctorId },
+          raw: false,
+        });
+        if (dentistInfo) {
+          dentistInfo.priceId = data.selectedPrice;
+          dentistInfo.paymentId = data.selectedPayment;
+          dentistInfo.provinceId = data.selectedProvince;
+          dentistInfo.nameClinic = data.nameClinic;
+          dentistInfo.addressClinic = data.addressClinic;
+          dentistInfo.note = data.note;
+
+          await dentistInfo.save();
+        } else {
+          await db.Dentist_info.create({
+            priceId: data.selectedPrice,
+            paymentId: data.selectedPayment,
+            provinceId: data.selectedProvince,
+            doctorId: data.doctorId,
+            nameClinic: data.nameClinic,
+            addressClinic: data.addressClinic,
+            note: data.note,
+          });
+        }
+        resolve({
+          errCode: 0,
+          message: "update successfully",
+        });
       }
     } catch (e) {
       reject(e);
@@ -127,6 +200,27 @@ let getDetailDentistById = (id) => {
               as: "positionData",
               attributes: ["valueEn", "valueVi"],
             },
+            {
+              model: db.Dentist_info,
+              attributes: { exclude: ["id", "doctorId"] },
+              include: [
+                {
+                  model: db.Allcode,
+                  as: "priceIdData",
+                  attributes: ["valueEn", "valueVi"],
+                },
+                {
+                  model: db.Allcode,
+                  as: "paymentIdData",
+                  attributes: ["valueEn", "valueVi"],
+                },
+                {
+                  model: db.Allcode,
+                  as: "provinceIdData",
+                  attributes: ["valueEn", "valueVi"],
+                },
+              ],
+            },
           ],
           raw: false,
           nest: true,
@@ -147,7 +241,6 @@ let getDetailDentistById = (id) => {
 };
 
 let CreateScheduleDentist = (data) => {
-  console.log("data", data);
   return new Promise(async (resolve, reject) => {
     try {
       if (!data.doctorId || !data.arrSchedule || !data.formateDate) {
@@ -217,6 +310,50 @@ let GetScheduleDentistByDate = (doctorId, date) => {
     }
   });
 };
+
+let GetExtraInfoDentistById = (doctorId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId) {
+        resolve({
+          errCode: 1,
+          message: "missing parameter ",
+        });
+      } else {
+        let data = await db.Dentist_info.findOne({
+          where: { doctorId: doctorId },
+          attributes: { exclude: ["id", "doctorId"] },
+          include: [
+            {
+              model: db.Allcode,
+              as: "priceIdData",
+              attributes: ["valueEn", "valueVi"],
+            },
+            {
+              model: db.Allcode,
+              as: "paymentIdData",
+              attributes: ["valueEn", "valueVi"],
+            },
+            {
+              model: db.Allcode,
+              as: "provinceIdData",
+              attributes: ["valueEn", "valueVi"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
+        if (!data) data = {};
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   getDentistNew,
   getDentistAll,
@@ -224,4 +361,5 @@ module.exports = {
   getDetailDentistById,
   CreateScheduleDentist,
   GetScheduleDentistByDate,
+  GetExtraInfoDentistById,
 };

@@ -11,6 +11,7 @@ import {
   getDetailDentistInfoService,
   createScheduleDentistService,
   getScheduleDentistByDateService,
+  getExtraInfoDentistByIdService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -369,3 +370,26 @@ export const fetchRequiredDentistInfoSuccess = (data) => ({
 export const fetchRequiredDentistInfoFailed = () => ({
   type: actionTypes.FETCH_REQUIRED_DENTIST_INFO_FAILED,
 });
+
+export const fetchExtraInfoDentistById = (id) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getExtraInfoDentistByIdService(id);
+
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_SUCCESS,
+          dataExtraDentist: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_FAILED,
+      });
+    }
+  };
+};

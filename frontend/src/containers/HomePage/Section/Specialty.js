@@ -8,39 +8,30 @@ import "slick-carousel/slick/slick-theme.css";
 class Specialty extends Component {
   render() {
     return (
-      <div className="section-group section-specialty">
-        <div className="section-container">
-          <div className="section-header">
-            <span className="title-section">Dịch Vụ</span>
-            <button className="btn-section">XEM THÊM</button>
+      <div className="section-specialty">
+        <div className="specialty-container">
+          <div className="specialty-header">
+            <span className="title-specialty">Dịch Vụ</span>
           </div>
-          <div className="section-body">
-            <Slider {...this.props.settings}>
-              <div className="section-customize">
-                <div className="bg-img section-specialty"></div>
-                <div>nhoor rang</div>
-              </div>
-              <div className="section-customize">
-                <div className="bg-img section-specialty"></div>
-                <div>nhoor rang</div>
-              </div>
-              <div className="section-customize">
-                <div className="bg-img section-specialty"></div>
-                <div>nhoor rang</div>
-              </div>
-              <div className="section-customize">
-                <div className="bg-img section-specialty"></div>
-                <div>nhoor rang</div>
-              </div>
-              <div className="section-customize">
-                <div className="bg-img section-specialty"></div>
-                <div>nhoor rang</div>
-              </div>
-              <div className="section-customize">
-                <div className="bg-img section-specialty"></div>
-                <div>nhoor rang</div>
-              </div>
-            </Slider>
+          <div className="specialty-body row">
+            <div className="specialty-customize col-3 p-1">
+              <div className="bg-img specialty-image"></div>
+            </div>
+            <div className="specialty-customize col-3 p-1">
+              <div className="bg-img specialty-image"></div>
+            </div>
+            <div className="specialty-customize col-3 p-1">
+              <div className="bg-img specialty-image"></div>
+            </div>
+            <div className="specialty-customize col-3 p-1">
+              <div className="bg-img specialty-image"></div>
+            </div>
+            <div className="specialty-customize col-3 p-1">
+              <div className="bg-img specialty-image"></div>
+            </div>
+            <div className="specialty-customize col-3 p-1 ">
+              <div className="bg-img specialty-image"></div>
+            </div>
           </div>
         </div>
       </div>

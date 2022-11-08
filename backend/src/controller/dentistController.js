@@ -75,6 +75,20 @@ let handleGetScheduleDentistByDate = async (req, res) => {
     });
   }
 };
+
+let handleGetExtraInfoDentistById = async (req, res) => {
+  try {
+    let response = await dentistService.GetExtraInfoDentistById(
+      req.query.doctorId
+    );
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
 module.exports = {
   handleGetDentistNew: handleGetDentistNew,
   handleGetDentistAll: handleGetDentistAll,
@@ -82,4 +96,5 @@ module.exports = {
   handleGetDetailDentistById: handleGetDetailDentistById,
   handleCreateScheduleDentist: handleCreateScheduleDentist,
   handleGetScheduleDentistByDate: handleGetScheduleDentistByDate,
+  handleGetExtraInfoDentistById: handleGetExtraInfoDentistById,
 };

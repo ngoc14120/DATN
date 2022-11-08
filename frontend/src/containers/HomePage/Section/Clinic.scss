@@ -1,0 +1,76 @@
+.section-clinic {
+  height: 100%;
+  padding-bottom: 30px;
+
+  .clinic-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    .clinic-header {
+      height: 80px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      background-image: linear-gradient(rgb(6, 0, 128), rgb(97, 118, 193));
+      .title-clinic {
+        font-size: 26px;
+        font-weight: 600;
+        color: white;
+      }
+      .btn-clinic {
+        border: none;
+        outline: none;
+        padding: 10px 15px;
+        background-color: #5853ee;
+      }
+    }
+    .clinic-body {
+      color: #777774;
+      .clinic-customize {
+        display: flex !important;
+        .bg-img {
+          border: 2px solid rgb(87, 104, 200);
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-color: #eee;
+          height: 400px;
+          width: 50%;
+          &.clinic-image {
+            background-image: url("../../../assets/images/dich-vu-cay-ghep-rang-implant-274x182.png");
+          }
+        }
+        .clinic-description {
+          padding-left: 100px;
+          padding-right: 10px;
+          width: 50%;
+          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+            sans-serif;
+          .clinic-description-header {
+            margin: 10px 0;
+            font-size: 36px;
+          }
+          .clinic-description-title {
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: 100;
+          }
+          .clinic-description-info {
+            p {
+              font-size: 18px;
+              font-weight: 100;
+            }
+            i {
+              font-size: 14px;
+              color: rgb(34, 30, 249);
+            }
+          }
+        }
+      }
+    }
+  }
+}
