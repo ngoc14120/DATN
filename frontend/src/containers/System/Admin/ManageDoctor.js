@@ -197,6 +197,9 @@ class ManageDoctor extends Component {
     });
   };
   render() {
+    console.log("allDentist", this.props.allDentist);
+    console.log("detailDentist", this.props.detailDentist);
+    console.log("allRequiredDentistInfo", this.props.allRequiredDentistInfo);
     return (
       <React.Fragment>
         <div className="manage-doctor-container">

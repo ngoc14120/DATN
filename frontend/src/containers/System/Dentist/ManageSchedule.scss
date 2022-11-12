@@ -1,0 +1,14 @@
+.manage-schedule-container {
+  position: relative;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+
+@media (max-width: 1240px) {
+  .manage-schedule-container {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+}

@@ -90,6 +90,7 @@ class UserManage extends Component {
   };
   render() {
     let arrUsers = this.state.arrUsers;
+    console.log(this.state.userEdit);
     return (
       <div className="users-container">
         <ModalsUser

@@ -39,6 +39,17 @@ let initWebRouter = (app) => {
   //   dentistController.handleCreateScheduleDentist
   // );
 
+  // api dịch Vụ
+  router.post(
+    "/api/create-new-service",
+    userControllers.handleCreateNewService
+  );
+  router.get("/api/get-service-all", userControllers.handleGetServiceAll);
+  router.get(
+    "/api/get-service-all-limit",
+    userControllers.handleGetServiceAllLimit
+  );
+
   return app.use("/", router);
 };
 

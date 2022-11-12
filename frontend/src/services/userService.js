@@ -47,6 +47,17 @@ const getScheduleDentistByDateService = (doctorId, date) => {
 const getExtraInfoDentistByIdService = (doctorId) => {
   return axios.get(`/api/get-extra-info-dentist-by-id?doctorId=${doctorId}`);
 };
+
+//dichj vuj
+const createServiceNewService = (data) => {
+  return axios.post("/api/create-new-service", data);
+};
+const getServiceAllService = () => {
+  return axios.get("/api/get-service-all");
+};
+const getServiceAllLimitService = (limit) => {
+  return axios.get(`/api/get-service-all-limit?limit=${limit}`);
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -61,4 +72,7 @@ export {
   createScheduleDentistService,
   getScheduleDentistByDateService,
   getExtraInfoDentistByIdService,
+  createServiceNewService,
+  getServiceAllService,
+  getServiceAllLimitService,
 };

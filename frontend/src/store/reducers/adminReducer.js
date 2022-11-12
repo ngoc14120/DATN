@@ -14,6 +14,8 @@ const initialState = {
   allScheduleDate: [],
   allRequiredDentistInfo: [],
   extraInfoDentist: [],
+  allService: [],
+  listAllService: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -141,7 +143,6 @@ const adminReducer = (state = initialState, action) => {
 
     case actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_SUCCESS:
       state.extraInfoDentist = action.dataExtraDentist;
-      console.log(state.extraInfoDentist);
       return {
         ...state,
       };
@@ -151,6 +152,27 @@ const adminReducer = (state = initialState, action) => {
         ...state,
       };
 
+    case actionTypes.FETCH_SERVICE_ALL_SUCCESS:
+      state.allService = action.dataService;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_SERVICE_ALL_FAILED:
+      state.allService = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_SERVICE_ALL_LIMIT_SUCCESS:
+      state.listAllService = action.dataServiceLimit;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_SERVICE_ALL_LIMIT_FAILED:
+      state.listAllService = [];
+      return {
+        ...state,
+      };
     default:
       return state;
   }

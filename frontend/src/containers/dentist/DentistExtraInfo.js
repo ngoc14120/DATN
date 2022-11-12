@@ -22,15 +22,18 @@ class DentistExtraInfo extends Component {
     // this.props.fetchDetailDentistInfo(id);
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
+    if (prevProps.doctorIdFromParent !== this.props.doctorIdFromParent) {
       this.props.fetchExtraInfoDentistById(this.props.doctorIdFromParent);
       this.setState({
-        extraInfo: this.props.extraInfoDentist,
+        extraInfo: this.props.extraInfoDentist
+          ? this.props.extraInfoDentist
+          : [],
       });
     }
   }
   render() {
-    console.log(this.props.extraInfoDentist);
+    // console.log(this.props.doctorIdFromParent);
+    // console.log(this.props.extraInfoDentist);
     return (
       <div>helooooo</div>
 

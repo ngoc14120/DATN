@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Modal } from "reactstrap";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
+import "./BookingModal.scss";
 import ProfileDentist from "../ProfileDentist";
 import _ from "lodash";
 

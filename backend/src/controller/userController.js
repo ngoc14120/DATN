@@ -39,6 +39,44 @@ let handleCreateNewUser = async (req, res) => {
   return res.status(200).json(message);
 };
 
+// tạo dữ liệu dịch vụ
+let handleCreateNewService = async (req, res) => {
+  try {
+    let message = await userService.createNewService(req.body);
+    return res.status(200).json(message);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
+let handleGetServiceAll = async (req, res) => {
+  try {
+    let response = await userService.getServiceAll();
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
+let handleGetServiceAllLimit = async (req, res) => {
+  let limit = req.query.limit;
+  if (!limit) limit = 10;
+  try {
+    let response = await userService.getServiceAllLimit(+limit);
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
+
+//ffffffffffffffff
 let handleDeleteUser = async (req, res) => {
   if (!req.body.id) {
     return res.status(500).json({
@@ -72,6 +110,7 @@ let getAllCode = async (req, res) => {
     });
   }
 };
+
 module.exports = {
   handleLogin: handleLogin,
   handleGetAllUsers: handleGetAllUsers,
@@ -79,4 +118,7 @@ module.exports = {
   handleEditUser: handleEditUser,
   handleDeleteUser: handleDeleteUser,
   getAllCode: getAllCode,
+  handleCreateNewService: handleCreateNewService,
+  handleGetServiceAll: handleGetServiceAll,
+  handleGetServiceAllLimit: handleGetServiceAllLimit,
 };

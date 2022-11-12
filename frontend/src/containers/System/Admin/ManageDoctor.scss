@@ -1,4 +1,9 @@
 .manage-doctor-container {
+  position: relative;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
   padding: 5px;
   .manage-doctor-title {
     text-align: center;
@@ -19,5 +24,12 @@
     }
   }
   .manage-doctor-editor {
+  }
+}
+
+@media (max-width: 1240px) {
+  .manage-doctor-container {
+    width: calc(100% - 60px);
+    left: 60px;
   }
 }

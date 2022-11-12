@@ -65,6 +65,10 @@ class App extends Component {
                     path={"/dentist/"}
                     component={userIsAuthenticated(Dentist)}
                   />
+                  <Route
+                    path={"/service/"}
+                    component={userIsAuthenticated(Dentist)}
+                  />
                   <Route path={path.HOMEPAGE} component={HomePage} />
                   <Route path={path.DETAIL_DENTIST} component={DetailDentist} />
                 </Switch>

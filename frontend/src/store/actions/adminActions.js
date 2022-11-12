@@ -12,6 +12,9 @@ import {
   createScheduleDentistService,
   getScheduleDentistByDateService,
   getExtraInfoDentistByIdService,
+  createServiceNewService,
+  getServiceAllService,
+  getServiceAllLimitService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -85,6 +88,7 @@ export const fetchRoleFailed = () => ({
 export const createNewUser = (data) => {
   return async (dispatch, getState) => {
     try {
+      console.log(data);
       let res = await createNewUserService(data);
       if (res && res.errCode === 0) {
         toast.success("create new user success");
@@ -389,6 +393,78 @@ export const fetchExtraInfoDentistById = (id) => {
     } catch (e) {
       dispatch({
         type: actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_FAILED,
+      });
+    }
+  };
+};
+
+//dichj vuj
+export const createServiceNew = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      console.log(data);
+      let res = await createServiceNewService(data);
+      if (res && res.errCode === 0) {
+        toast.success("create new service success");
+        dispatch({
+          type: actionTypes.CREATE_SERVICE_NEW_SUCCESS,
+        });
+        dispatch(fetchServiceAll());
+      } else {
+        toast.error("create new service error");
+        dispatch({
+          type: actionTypes.CREATE_SERVICE_NEW_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.CREATE_SERVICE_NEW_FAILED,
+      });
+    }
+  };
+};
+export const fetchServiceAll = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getServiceAllService();
+
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_SERVICE_ALL_SUCCESS,
+          dataService: res.data.reverse(),
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_SERVICE_ALL_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_SERVICE_ALL_FAILED,
+      });
+    }
+  };
+};
+
+export const fetchServiceAllLimit = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getServiceAllLimitService(9);
+
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_SERVICE_ALL_LIMIT_SUCCESS,
+          dataServiceLimit: res.data.reverse(),
+        });
+      } else {
+        toast.error("fetch aall user error");
+        dispatch({
+          type: actionTypes.FETCH_SERVICE_ALL_LIMIT_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.FETCH_SERVICE_ALL_LIMIT_FAILED,
       });
     }
   };

@@ -92,8 +92,11 @@ class DentistSchedule extends Component {
       isOpenModalBooking,
     } = this.state;
     return (
-      <div>
-        <select onChange={(e) => this.handleOnChangeSelect(e)}>
+      <div className="dentist-schedule">
+        <select
+          className="dentist-schedule-selection"
+          onChange={(e) => this.handleOnChangeSelect(e)}
+        >
           {allDays &&
             allDays.length > 0 &&
             allDays.map((item, index) => {
@@ -104,21 +107,27 @@ class DentistSchedule extends Component {
               );
             })}
         </select>
-        <div>
-          {allAvailableTime && allAvailableTime.length > 0
-            ? allAvailableTime.map((item, index) => {
-                return (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      this.handleClickBookingScheduleTime(item);
-                    }}
-                  >
-                    {item.timeTypeData.valueVi}
-                  </button>
-                );
-              })
-            : "khoong co lixh"}
+        <div className="schedule-section">
+          <div className="schedule-title">
+            <i className="fas fa-calendar-alt"></i> LỊCH KHÁM
+          </div>
+          {allAvailableTime && allAvailableTime.length > 0 ? (
+            allAvailableTime.map((item, index) => {
+              return (
+                <button
+                  className="btn-dentist-schedule"
+                  key={index}
+                  onClick={() => {
+                    this.handleClickBookingScheduleTime(item);
+                  }}
+                >
+                  {item.timeTypeData.valueVi}
+                </button>
+              );
+            })
+          ) : (
+            <div className="schedule-citation">Hôm nay chưa có lịch khám</div>
+          )}
         </div>
         <BookingModal
           isOpenModal={isOpenModalBooking}
@@ -126,10 +135,6 @@ class DentistSchedule extends Component {
           dataTime={dataScheduleTimeModal}
         />
       </div>
-      // <>
-      //   {/* <HomeHeader /> */}
-      //   <p>sdsdsdsdsds</p>
-      // </>
     );
   }
 }

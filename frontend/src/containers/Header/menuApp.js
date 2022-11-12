@@ -4,20 +4,12 @@ export const adminMenu = [
     name: "menu.admin.manage-user",
     menus: [
       {
-        name: "menu.admin.crud",
-        link: "/system/user-manage",
-      },
-      {
-        name: "menu.admin.crud-redux",
+        name: "Quản Lý Người Dùng",
         link: "/system/user-redux",
       },
       {
-        name: "menu.admin.manage-doctor",
+        name: "Quản Lý Nha Sĩ",
         link: "/system/manage-doctor",
-      },
-      {
-        name: "menu.admin.manage-admin",
-        link: "/system/user-admin",
       },
       {
         name: "Quản lý lịch khám",
@@ -28,20 +20,15 @@ export const adminMenu = [
   {
     //quan ly ng dung
     name: "menu.admin.clinic",
-    menus: [
-      {
-        name: "menu.admin.manage-clinic",
-        link: "/system/manage-clinic",
-      },
-    ],
+    link: "/dentist/manage-schedule",
   },
   {
     //quan ly ng dung
     name: "menu.admin.specialty",
     menus: [
       {
-        name: "menu.admin.manage-specialty",
-        link: "/system/manage-specialty",
+        name: "ffffffff",
+        // link: "/dentist/manage-schedule",
       },
     ],
   },

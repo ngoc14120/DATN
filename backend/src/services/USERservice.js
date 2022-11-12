@@ -123,6 +123,77 @@ let createNewUser = (data) => {
   });
 };
 
+// thêm mới dịch vụ
+let createNewService = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!data.name || !data.priceId) {
+        resolve({
+          errCode: 1,
+          message: "missing parameter ",
+        });
+      } else {
+        if (data.action === "CREATE") {
+          await db.Service.create({
+            name: data.name,
+            description: data.description,
+            priceId: data.priceId,
+            image: data.avatar,
+          });
+        } else if (data.action === "EDIT") {
+          let service = await db.Service.findOne({
+            where: { id: data.id },
+            raw: false,
+          });
+          if (service) {
+            service.name = data.name;
+            service.priceId = data.priceId;
+            service.description = data.description;
+            if (service.avatar) {
+              service.image = data.avatar;
+            }
+
+            await service.save();
+          }
+        }
+      }
+
+      resolve({
+        errCode: 0,
+        message: "ok",
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let getServiceAll = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let users = await db.Service.findAll();
+
+      resolve({ errCode: 0, data: users });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let getServiceAllLimit = (limitInput) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let users = await db.Service.findAll({
+        limit: limitInput,
+        order: [["createdAt", "DESC"]],
+      });
+
+      resolve({ errCode: 0, data: users });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+//22222222222222
 let deleteUser = (userId) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -219,4 +290,7 @@ module.exports = {
   deleteUser: deleteUser,
   editUser: editUser,
   getAllCodeService: getAllCodeService,
+  createNewService,
+  getServiceAll,
+  getServiceAllLimit,
 };

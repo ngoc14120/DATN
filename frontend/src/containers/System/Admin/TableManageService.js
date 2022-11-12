@@ -1,29 +1,27 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import "./TableManageUser.scss";
+import "./TableManageService.scss";
 import * as actions from "../../../store/actions";
-import BookingModal from "./modal/BookingModal";
+import ServiceModal from "./modal/ServiceModal";
 
-class TableManageUser extends Component {
+class TableManageService extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpenModalBooking: false,
-      userRedux: [],
-      editUserModal: {},
+      arrService: [],
+      editServiceModal: {},
     };
   }
 
   componentDidMount() {
-    console.log("shihi");
-    this.props.fetchUserRedux();
+    this.props.fetchServiceAll();
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.listUsers !== this.props.listUsers) {
-      console.log("sdsdsdsd");
+    if (prevProps.allService !== this.props.allService) {
       this.setState({
-        userRedux: this.props.listUsers,
+        arrService: this.props.allService,
       });
     }
   }
@@ -37,35 +35,47 @@ class TableManageUser extends Component {
       isOpenModalBooking: false,
     });
   };
-  handleClickEditModal = (user) => {
+  handleClickEditModal = (service) => {
     this.setState({
       isOpenModalBooking: true,
-      editUserModal: user,
+      editServiceModal: service,
     });
   };
   render() {
-    let arrUsers = this.state.userRedux;
-    console.log(this.props.listUsers);
+    let arrService = this.state.arrService;
+    console.log(this.props.allService);
     return (
       <>
-        <table id="TableManageUser">
+        <table id="TableManageService">
           <tbody>
             <tr>
-              <th>Email</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Address</th>
+              <th>Dịch Vụ</th>
+              <th>Giá Tiền</th>
+              <th>Thông Tin</th>
+              <th>Ảnh</th>
               <th>Action</th>
             </tr>
-            {arrUsers &&
-              arrUsers.length > 0 &&
-              arrUsers.map((item, index) => {
+            {arrService &&
+              arrService.length > 0 &&
+              arrService.map((item, index) => {
+                let imageBase64 = "";
+                if (item.image) {
+                  imageBase64 = new Buffer(item.image, "base64").toString(
+                    "binary"
+                  );
+                }
+
                 return (
                   <tr key={index}>
-                    <td>{item.email}</td>
-                    <td>{item.firstName}</td>
-                    <td>{item.lastName}</td>
-                    <td>{item.address}</td>
+                    <td>{item.name}</td>
+                    <td>{item.priceId}</td>
+                    <td>{item.description}</td>
+                    <td>
+                      <div
+                        className="bg-img"
+                        style={{ backgroundImage: `url(${imageBase64})` }}
+                      ></div>
+                    </td>
                     <td>
                       <button
                         className="btn-edit"
@@ -86,10 +96,10 @@ class TableManageUser extends Component {
           </tbody>
         </table>
         {this.state.isOpenModalBooking && (
-          <BookingModal
+          <ServiceModal
             isOpenModal={this.state.isOpenModalBooking}
             closeBookingModal={this.closeBookingModal}
-            editUserModal={this.state.editUserModal}
+            editServiceModal={this.state.editServiceModal}
           />
         )}
       </>
@@ -99,15 +109,15 @@ class TableManageUser extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    listUsers: state.admin.users,
+    allService: state.admin.allService,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
+    fetchServiceAll: () => dispatch(actions.fetchServiceAll()),
     deleteUserRedux: (id) => dispatch(actions.deleteUser(id)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableManageUser);
+export default connect(mapStateToProps, mapDispatchToProps)(TableManageService);

@@ -6,6 +6,7 @@ import { dateFormat } from "../../../utils";
 import DatePicker from "../../../components/Input/DatePicker";
 import moment from "moment";
 import { toast } from "react-toastify";
+import "./ManageSchedule.scss";
 import _ from "lodash";
 
 class ManageSchedule extends Component {

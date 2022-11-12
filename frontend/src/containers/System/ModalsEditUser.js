@@ -64,13 +64,6 @@ class ModalsEditUser extends Component {
         className={"modals-user-container"}
         size="lg"
       >
-        <ModalHeader
-          toggle={() => {
-            this.toggle();
-          }}
-        >
-          Modal title
-        </ModalHeader>
         <ModalBody>
           <div className="modal-user-body">
             <div className="input-content">

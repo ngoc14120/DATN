@@ -1,25 +1,24 @@
 import React, { Component } from "react";
+import { Modal } from "reactstrap";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { LANGUAGES, CRUD_ACTION, CommonUtils } from "../../../utils";
-
+import "./ManageService.scss";
+import TableManageService from "./TableManageService";
 import * as actions from "../../../store/actions";
 
-import BookingModal from "./modal/BookingModal";
-import "./UserRedux.scss";
-import TableManageUser from "./TableManageUser";
+import ServiceModal from "./modal/ServiceModal";
 
-class UserRedux extends Component {
+class ManageService extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpenModalBooking: false,
-
       action: "",
     };
   }
+  componentDidMount() {}
 
-  async componentDidMount() {}
   componentDidUpdate(prevProps, prevState, snapshot) {}
   closeBookingModal = () => {
     this.setState({
@@ -34,7 +33,7 @@ class UserRedux extends Component {
   };
   render() {
     return (
-      <div className="user-redux-container">
+      <div className="manage-service-container">
         <div className="title">Danh Sách Người Dùng</div>
         <div className="user-redux-body">
           <div className="btn-add-user py-3 ">
@@ -48,13 +47,13 @@ class UserRedux extends Component {
           </div>
           <div className="row">
             <div className="col-12 mb-5">
-              <TableManageUser />
+              <TableManageService />
             </div>
           </div>
         </div>
 
         {this.state.isOpenModalBooking && (
-          <BookingModal
+          <ServiceModal
             isOpenModal={this.state.isOpenModalBooking}
             closeBookingModal={this.closeBookingModal}
             action={this.state.action}
@@ -73,4 +72,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageService);
