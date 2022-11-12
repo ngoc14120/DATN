@@ -24,11 +24,7 @@ module.exports = {
         allowNull: true,
         type: Sequelize.INTEGER,
       },
-      clinicId: {
-        allowNull: true,
-        type: Sequelize.INTEGER,
-      },
-      specialtyId: {
+      serviceId: {
         allowNull: true,
         type: Sequelize.INTEGER,
       },

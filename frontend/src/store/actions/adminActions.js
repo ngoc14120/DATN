@@ -15,6 +15,7 @@ import {
   createServiceNewService,
   getServiceAllService,
   getServiceAllLimitService,
+  deleteService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -465,6 +466,30 @@ export const fetchServiceAllLimit = () => {
     } catch (e) {
       dispatch({
         type: actionTypes.FETCH_SERVICE_ALL_LIMIT_FAILED,
+      });
+    }
+  };
+};
+export const deleteServiceId = (userId) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await deleteService(userId);
+      console.log(res);
+      if (res && res.errCode === 0) {
+        toast.success("delete service success");
+        dispatch({
+          type: actionTypes.DELETE_SERVICE_SUCCESS,
+        });
+        dispatch(fetchServiceAll());
+      } else {
+        toast.error("delete service error");
+        dispatch({
+          type: actionTypes.DELETE_SERVICE_FAILED,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.DELETE_SERVICE_FAILED,
       });
     }
   };

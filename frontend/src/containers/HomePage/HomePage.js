@@ -13,6 +13,19 @@ import "./HomePage.scss";
 import Handbook from "./Section/handbook";
 
 class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false,
+    };
+  }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        isLoading: true,
+      });
+    }, 3000);
+  }
   render() {
     let settings = {
       dots: false,
@@ -21,16 +34,27 @@ class HomePage extends Component {
       slidesToShow: 4,
       slidesToScroll: 1,
     };
+    console.log(this.state);
     return (
       <div>
-        <HomeHeader />
-        <Slider />
-        <Specialty settings={settings} />
-        <Clinic settings={settings} />
-        <OutstandingDentist settings={settings} />
-        <Handbook settings={settings} />
-        <About />
-        <HomeFooter />
+        {this.state.isLoading === true ? (
+          <>
+            <HomeHeader />
+            <Slider />
+            <Specialty settings={settings} />
+            <Clinic settings={settings} />
+            <OutstandingDentist settings={settings} />
+            <Handbook settings={settings} />
+            <About />
+            <HomeFooter />
+          </>
+        ) : (
+          <div className="loading-container">
+            <div className="is-loading">
+              <div className="loading"></div>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

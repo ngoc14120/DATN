@@ -34,75 +34,75 @@ class Header extends Component {
     let { isDentistLogin } = this.state;
     return (
       <div className="header-container">
-        <div class="sidebar">
-          <div class="logo-details">
-            <i class="bx bxl-c-plus-plus"></i>
-            <span class="logo_name">ADMIN</span>
+        <div className="sidebar">
+          <div className="logo-details">
+            <i className="bx bxl-c-plus-plus"></i>
+            <span className="logo_name">ADMIN</span>
           </div>
           {isDentistLogin === true ? (
-            <ul class="nav-links">
+            <ul className="nav-links">
               <li>
                 <NavLink to="/dentist/manage-schedule">
-                  <i class="bx bx-box"></i>
-                  <span class="links_name">
+                  <i className="bx bx-box"></i>
+                  <span className="links_name">
                     <FormattedMessage id={"Quản lý lịch khám"} />
                   </span>
                 </NavLink>
               </li>
             </ul>
           ) : (
-            <ul class="nav-links">
+            <ul className="nav-links">
               <li>
                 <NavLink to="/system/user-redux">
-                  <i class="bx bx-user"></i>
-                  <span class="links_name">
+                  <i className="bx bx-user"></i>
+                  <span className="links_name">
                     <FormattedMessage id={"Quản Lý Người Dùng"} />
                   </span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dentist/manage-schedule">
-                  <i class="bx bx-box"></i>
-                  <span class="links_name">
+                  <i className="bx bx-box"></i>
+                  <span className="links_name">
                     <FormattedMessage id={"Quản lý lịch khám"} />
                   </span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/system/manage-doctor">
-                  <i class="bx bx-list-ul"></i>
-                  <span class="links_name">Quản Lý Nha Sĩ</span>
+                  <i className="bx bx-list-ul"></i>
+                  <span className="links_name">Quản Lý Nha Sĩ</span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/service/manage-service">
-                  <i class="bx bx-book-alt"></i>
-                  <span class="links_name">Quản lý Dịch Vụ</span>
+                  <i className="bx bx-book-alt"></i>
+                  <span className="links_name">Quản lý Dịch Vụ</span>
                 </NavLink>
               </li>
 
               <li>
                 <a href="#">
-                  <i class="bx bx-message"></i>
-                  <span class="links_name">Tin Nhắn</span>
+                  <i className="bx bx-message"></i>
+                  <span className="links_name">Tin Nhắn</span>
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <i class="bx bx-heart"></i>
-                  <span class="links_name">Yêu Thích</span>
+                  <i className="bx bx-heart"></i>
+                  <span className="links_name">Yêu Thích</span>
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <i class="bx bx-cog"></i>
-                  <span class="links_name">Setting</span>
+                  <i className="bx bx-cog"></i>
+                  <span className="links_name">Setting</span>
                 </a>
               </li>
-              <li class="log_out" onClick={processLogout}>
+              <li className="log_out" onClick={processLogout}>
                 <a href="#">
-                  <i class="bx bx-log-out"></i>
-                  <span class="links_name">Log out</span>
+                  <i className="bx bx-log-out"></i>
+                  <span className="links_name">Log out</span>
                 </a>
               </li>
             </ul>
@@ -110,20 +110,20 @@ class Header extends Component {
         </div>
         <section className="home-section">
           <nav>
-            <div class="sidebar-button">
-              <i class="bx bx-menu sidebarBtn"></i>
-              <span class="dashboard">Dashboard</span>
+            <div className="sidebar-button">
+              <i className="bx bx-menu sidebarBtn"></i>
+              <span className="dashboard">Dashboard</span>
             </div>
-            <div class="search-box">
+            <div className="search-box">
               <input type="text" placeholder="Search..." />
-              <i class="bx bx-search"></i>
+              <i className="bx bx-search"></i>
             </div>
-            <div class="profile-details">
+            <div className="profile-details">
               <img src="images/profile.jpg" alt="" />
-              <span class="admin_name">
+              <span className="admin_name">
                 {userInfo && userInfo.firstName ? userInfo.firstName : ""} !
               </span>
-              <i class="bx bx-chevron-down"></i>
+              <i className="bx bx-chevron-down"></i>
             </div>
           </nav>
         </section>

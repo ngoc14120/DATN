@@ -49,6 +49,7 @@ let initWebRouter = (app) => {
     "/api/get-service-all-limit",
     userControllers.handleGetServiceAllLimit
   );
+  router.delete("/api/delete-service", userControllers.handleDeleteService);
 
   return app.use("/", router);
 };

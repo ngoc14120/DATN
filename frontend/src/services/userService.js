@@ -58,6 +58,9 @@ const getServiceAllService = () => {
 const getServiceAllLimitService = (limit) => {
   return axios.get(`/api/get-service-all-limit?limit=${limit}`);
 };
+const deleteService = (userId) => {
+  return axios.delete("/api/delete-service", { data: { id: userId } });
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -75,4 +78,5 @@ export {
   createServiceNewService,
   getServiceAllService,
   getServiceAllLimitService,
+  deleteService,
 };

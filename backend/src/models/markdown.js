@@ -17,8 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       contentMarkdown: DataTypes.TEXT("LONG"),
       description: DataTypes.TEXT("LONG"),
       doctorId: DataTypes.INTEGER,
-      clinicId: DataTypes.INTEGER,
-      specialtyId: DataTypes.INTEGER,
+      serviceId: DataTypes.INTEGER,
     },
     {
       sequelize,

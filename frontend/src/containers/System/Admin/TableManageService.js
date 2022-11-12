@@ -27,7 +27,7 @@ class TableManageService extends Component {
   }
 
   handleDeleteUser = (user) => {
-    this.props.deleteUserRedux(user.id);
+    this.props.deleteServiceId(user.id);
   };
 
   closeBookingModal = () => {
@@ -116,7 +116,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchServiceAll: () => dispatch(actions.fetchServiceAll()),
-    deleteUserRedux: (id) => dispatch(actions.deleteUser(id)),
+    deleteServiceId: (id) => dispatch(actions.deleteServiceId(id)),
   };
 };
 

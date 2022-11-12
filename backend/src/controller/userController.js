@@ -75,6 +75,17 @@ let handleGetServiceAllLimit = async (req, res) => {
     });
   }
 };
+let handleDeleteService = async (req, res) => {
+  if (!req.body.id) {
+    return res.status(500).json({
+      errCode: 1,
+      message: "missing required id",
+    });
+  }
+
+  let message = await userService.deleteService(req.body.id);
+  return res.status(200).json(message);
+};
 
 //ffffffffffffffff
 let handleDeleteUser = async (req, res) => {
@@ -121,4 +132,5 @@ module.exports = {
   handleCreateNewService: handleCreateNewService,
   handleGetServiceAll: handleGetServiceAll,
   handleGetServiceAllLimit: handleGetServiceAllLimit,
+  handleDeleteService: handleDeleteService,
 };

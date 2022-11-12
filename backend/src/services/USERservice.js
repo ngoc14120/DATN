@@ -192,6 +192,30 @@ let getServiceAllLimit = (limitInput) => {
     }
   });
 };
+let deleteService = (userId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let service = await db.Service.findOne({
+        where: { id: userId },
+      });
+      if (service) {
+        await db.Service.destroy({
+          where: { id: userId },
+        });
+        resolve({
+          errCode: 0,
+          message: "the user was deleted successfully",
+        });
+      }
+      resolve({
+        errCode: 2,
+        message: "the user isn't exits",
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
 //22222222222222
 let deleteUser = (userId) => {
@@ -293,4 +317,5 @@ module.exports = {
   createNewService,
   getServiceAll,
   getServiceAllLimit,
+  deleteService,
 };
