@@ -40,7 +40,7 @@ class ManageDoctor extends Component {
     };
   }
 
-  componentDidMount(selectedOption) {
+  componentDidMount() {
     this.props.fetchDentistAll();
     this.props.fetchRequiredDentistInfoStart();
   }

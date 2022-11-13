@@ -114,41 +114,52 @@ class ManageSchedule extends Component {
     return (
       <React.Fragment>
         <div className="manage-schedule-container">
-          <div className="m-s-title">taoj thoiwf lich kham</div>
+          <div className="m-s-title">Tạo Lịch Khám</div>
+          <div className="manage-schedule-body">
+            <div className="manage-schedule-dentist">
+              <label>Chọn Bác Sĩ</label>
+              <Select
+                value={this.state.selectedOption}
+                onChange={this.handleChangeSelect}
+                options={this.state.listDentist}
+              />
+            </div>
+            <div className="manage-schedule-date">
+              <label>Chọn Ngày</label>
+              <DatePicker
+                onChange={this.handleOnchangeDatePick}
+                className="form-control"
+                value={this.state.currentDate}
+                minDate={yesterday}
+              />
+            </div>
 
-          <div className="content-left form-group">
-            <label> Chonj bac si</label>
-            <Select
-              value={this.state.selectedOption}
-              onChange={this.handleChangeSelect}
-              options={this.state.listDentist}
-            />
-          </div>
-          <div>
-            <label>chonj ngay</label>
-            <DatePicker
-              onChange={this.handleOnchangeDatePick}
-              className="from-control"
-              value={this.state.currentDate}
-              minDate={yesterday}
-            />
-          </div>
-          <div>
-            {rangeTime &&
-              rangeTime.length > 0 &&
-              rangeTime.map((item, index) => {
-                return (
-                  <button
-                    key={index}
-                    onClick={() => this.handleClickBtnTime(item)}
-                  >
-                    {item.valueVi}
-                  </button>
-                );
-              })}
-          </div>
-          <div>
-            <button onClick={() => this.handleSaveSchedule()}>Luu</button>
+            <div className="manage-schedule-hours">
+              {rangeTime &&
+                rangeTime.length > 0 &&
+                rangeTime.map((item, index) => {
+                  return (
+                    <button
+                      className={
+                        item.isSelected === true
+                          ? "btn-schedule active"
+                          : "btn-schedule"
+                      }
+                      key={index}
+                      onClick={() => this.handleClickBtnTime(item)}
+                    >
+                      {item.valueVi}
+                    </button>
+                  );
+                })}
+            </div>
+            <button
+              className="btn btn-primary px-3 my-4 float-right"
+              onClick={() => this.handleSaveSchedule()}
+            >
+              Lưu
+            </button>
+            <div></div>
           </div>
         </div>
       </React.Fragment>

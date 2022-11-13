@@ -107,15 +107,6 @@ class ServiceModal extends Component {
       avatar: this.state.avatar,
       action: this.state.action,
     });
-    // } else {
-    //   this.props.editUser({
-    //     id: this.state.id,
-    //     name: this.state.name,
-    //     priceId: this.state.priceId,
-    //     description: this.state.description,
-    //     avatar: this.state.avatar,
-    //   });
-    // }
 
     this.props.closeBookingModal();
   };
@@ -127,8 +118,6 @@ class ServiceModal extends Component {
   };
 
   render() {
-    // console.log(this.state);
-
     let { isOpenModal, closeBookingModal } = this.props;
     let { name, description, priceId } = this.state;
 
@@ -239,26 +228,12 @@ class ServiceModal extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    language: state.app.language,
-    genderRedux: state.admin.genders,
-    positionRedux: state.admin.positions,
-    roleRedux: state.admin.roles,
-
-    allRequiredDentistInfo: state.admin.allRequiredDentistInfo,
-  };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getGenderStart: () => dispatch(actions.fetchGenderStart()),
-    getPositionStart: () => dispatch(actions.fetchPositionStart()),
-    getRoleStart: () => dispatch(actions.fetchRoleStart()),
-    editUser: (data) => dispatch(actions.editUser(data)),
-
     createServiceNew: (data) => dispatch(actions.createServiceNew(data)),
-    fetchRequiredDentistInfoStart: () =>
-      dispatch(actions.fetchRequiredDentistInfoStart()),
   };
 };
 

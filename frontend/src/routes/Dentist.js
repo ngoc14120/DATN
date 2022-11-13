@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import ManageSchedule from "../containers/System/Dentist/ManageSchedule";
 import ManageService from "../containers/System/Admin/ManageService";
+import ManageServiceInfo from "../containers/System/Admin/ManageServiceInfo";
 import Header from "../containers/Header/Header";
 
 class Dentist extends Component {
@@ -19,6 +20,10 @@ class Dentist extends Component {
                 component={ManageSchedule}
               />
               <Route path="/service/manage-service" component={ManageService} />
+              <Route
+                path="/service/manage-service-info"
+                component={ManageServiceInfo}
+              />
             </Switch>
           </div>
         </div>

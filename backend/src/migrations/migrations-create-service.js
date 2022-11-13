@@ -17,10 +17,6 @@ module.exports = {
       priceId: {
         type: Sequelize.STRING,
       },
-      serviceId: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       image: {
         type: Sequelize.BLOB("long"),
       },

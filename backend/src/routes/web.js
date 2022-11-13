@@ -44,10 +44,18 @@ let initWebRouter = (app) => {
     "/api/create-new-service",
     userControllers.handleCreateNewService
   );
+  router.post(
+    "/api/create-service-info",
+    userControllers.handleCreateServiceInfo
+  );
   router.get("/api/get-service-all", userControllers.handleGetServiceAll);
   router.get(
     "/api/get-service-all-limit",
     userControllers.handleGetServiceAllLimit
+  );
+  router.get(
+    "/api/get-detail-service-by-id",
+    userControllers.handleGetDetailServiceById
   );
   router.delete("/api/delete-service", userControllers.handleDeleteService);
 

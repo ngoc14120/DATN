@@ -52,11 +52,17 @@ const getExtraInfoDentistByIdService = (doctorId) => {
 const createServiceNewService = (data) => {
   return axios.post("/api/create-new-service", data);
 };
+const createServiceInfoService = (data) => {
+  return axios.post("/api/create-service-info", data);
+};
 const getServiceAllService = () => {
   return axios.get("/api/get-service-all");
 };
 const getServiceAllLimitService = (limit) => {
   return axios.get(`/api/get-service-all-limit?limit=${limit}`);
+};
+const getDetailServiceInfoService = (id) => {
+  return axios.get(`/api/get-detail-service-by-id?id=${id}`);
 };
 const deleteService = (userId) => {
   return axios.delete("/api/delete-service", { data: { id: userId } });
@@ -79,4 +85,6 @@ export {
   getServiceAllService,
   getServiceAllLimitService,
   deleteService,
+  createServiceInfoService,
+  getDetailServiceInfoService,
 };

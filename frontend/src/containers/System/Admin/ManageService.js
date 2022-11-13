@@ -34,7 +34,7 @@ class ManageService extends Component {
   render() {
     return (
       <div className="manage-service-container">
-        <div className="title">Danh Sách Người Dùng</div>
+        <div className="title">Danh Sách Dịch Vụ</div>
         <div className="user-redux-body">
           <div className="btn-add-user py-3 ">
             <button
@@ -42,7 +42,7 @@ class ManageService extends Component {
               onClick={this.handleClickAddUser}
             >
               <i className="fas fa-plus "></i>
-              Thêm người dùng
+              Thêm Dịch Vụ
             </button>
           </div>
           <div className="row">

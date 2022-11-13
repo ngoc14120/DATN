@@ -16,6 +16,7 @@ const initialState = {
   extraInfoDentist: [],
   allService: [],
   listAllService: [],
+  detailService: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -170,6 +171,17 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_SERVICE_ALL_LIMIT_FAILED:
       state.listAllService = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_DETAIL_SERVICE_INFO_SUCCESS:
+      state.detailService = action.dataDetailService;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_DETAIL_SERVICE_INFO_FAILED:
+      state.detailService = [];
       return {
         ...state,
       };

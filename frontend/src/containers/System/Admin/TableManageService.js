@@ -109,7 +109,7 @@ class TableManageService extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    allService: state.admin.allService,
+    allService: state.service.allService,
   };
 };
 

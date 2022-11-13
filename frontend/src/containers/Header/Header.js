@@ -43,7 +43,8 @@ class Header extends Component {
             <ul className="nav-links">
               <li>
                 <NavLink to="/dentist/manage-schedule">
-                  <i className="bx bx-box"></i>
+                  <i className="far fa-calendar-alt"></i>
+                  {/* <i className="bx bx-box"></i> */}
                   <span className="links_name">
                     <FormattedMessage id={"Quản lý lịch khám"} />
                   </span>
@@ -62,7 +63,8 @@ class Header extends Component {
               </li>
               <li>
                 <NavLink to="/dentist/manage-schedule">
-                  <i className="bx bx-box"></i>
+                  <i className="far fa-calendar-alt"></i>
+                  {/* <i className="bx bx-box"></i> */}
                   <span className="links_name">
                     <FormattedMessage id={"Quản lý lịch khám"} />
                   </span>
@@ -70,17 +72,22 @@ class Header extends Component {
               </li>
               <li>
                 <NavLink to="/system/manage-doctor">
-                  <i className="bx bx-list-ul"></i>
-                  <span className="links_name">Quản Lý Nha Sĩ</span>
+                  <i className="fas fa-id-card"></i>
+                  <span className="links_name">Chi Tiết Nha Sĩ</span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/service/manage-service">
-                  <i className="bx bx-book-alt"></i>
+                  <i className="bx bx-list-ul"></i>
                   <span className="links_name">Quản lý Dịch Vụ</span>
                 </NavLink>
               </li>
-
+              <li>
+                <NavLink to="/service/manage-service-info">
+                  <i className="bx bx-book-alt"></i>
+                  <span className="links_name">Chi Tiết Dịch Vụ</span>
+                </NavLink>
+              </li>
               <li>
                 <a href="#">
                   <i className="bx bx-message"></i>

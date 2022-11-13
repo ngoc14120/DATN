@@ -86,6 +86,28 @@ let handleDeleteService = async (req, res) => {
   let message = await userService.deleteService(req.body.id);
   return res.status(200).json(message);
 };
+let handleCreateServiceInfo = async (req, res) => {
+  try {
+    let response = await userService.createServiceInfo(req.body);
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
+let handleGetDetailServiceById = async (req, res) => {
+  try {
+    let response = await userService.getDetailServiceById(req.query.id);
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
 
 //ffffffffffffffff
 let handleDeleteUser = async (req, res) => {
@@ -133,4 +155,6 @@ module.exports = {
   handleGetServiceAll: handleGetServiceAll,
   handleGetServiceAllLimit: handleGetServiceAllLimit,
   handleDeleteService: handleDeleteService,
+  handleCreateServiceInfo: handleCreateServiceInfo,
+  handleGetDetailServiceById: handleGetDetailServiceById,
 };

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Service.hasOne(models.Markdown, { foreignKey: "serviceId" });
     }
   }
   Service.init(

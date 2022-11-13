@@ -216,6 +216,85 @@ let deleteService = (userId) => {
     }
   });
 };
+let createServiceInfo = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      console.log(data);
+      if (
+        !data.contentHTML ||
+        !data.contentMarkdown ||
+        !data.serviceId ||
+        !data.action
+      ) {
+        resolve({
+          errCode: 1,
+          message: "missing parameter ",
+        });
+      } else {
+        if (data.action === "CREATE") {
+          await db.Markdown.create({
+            contentHTML: data.contentHTML,
+            contentMarkdown: data.contentMarkdown,
+            description: data.description,
+            serviceId: data.serviceId,
+          });
+        } else if (data.action === "EDIT") {
+          let serviceMarkdown = await db.Markdown.findOne({
+            where: { serviceId: data.serviceId },
+            raw: false,
+          });
+          if (serviceMarkdown) {
+            serviceMarkdown.contentHTML = data.contentHTML;
+            serviceMarkdown.contentMarkdown = data.contentMarkdown;
+            serviceMarkdown.description = data.description;
+            await serviceMarkdown.save();
+          }
+        }
+
+        resolve({
+          errCode: 0,
+          message: "update successfully",
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let getDetailServiceById = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!id) {
+        resolve({
+          errCode: 1,
+          message: "missing parameter ",
+        });
+      } else {
+        let data = await db.Service.findOne({
+          where: { id: id },
+          include: [
+            {
+              model: db.Markdown,
+              attributes: ["contentHTML", "contentMarkdown", "description"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
+        if (data.image) {
+          data.image = new Buffer(data.image, "base64").toString("binary");
+        }
+        if (!data) data = {};
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
 //22222222222222
 let deleteUser = (userId) => {
@@ -318,4 +397,6 @@ module.exports = {
   getServiceAll,
   getServiceAllLimit,
   deleteService,
+  createServiceInfo,
+  getDetailServiceById,
 };
