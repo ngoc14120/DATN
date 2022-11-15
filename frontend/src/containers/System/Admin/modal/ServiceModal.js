@@ -27,10 +27,6 @@ class ServiceModal extends Component {
     };
   }
   componentDidMount() {
-    this.props.getGenderStart();
-    this.props.getPositionStart();
-    this.props.getRoleStart();
-    this.props.fetchRequiredDentistInfoStart();
     let service = this.props.editServiceModal;
     if (service && !_.isEmpty(service)) {
       let imageBase64 = "";

@@ -29,13 +29,6 @@
           width: 100%;
           height: 85%;
         }
-        // span {
-        //   width: 60%;
-        //   font-size: 20px;
-        //   font-weight: 600;
-        //   font-style: italic;
-        //   color: blue;
-        // }
       }
 
       i {
@@ -50,9 +43,15 @@
       align-items: flex-end;
       justify-content: space-between;
       .child-content {
-        .sub-title {
-          font-size: 12px;
-          font-weight: 400;
+        font-size: 17px;
+        padding: 10px;
+        .active {
+          color: #e6c20b;
+        }
+        cursor: pointer;
+        a {
+          padding: 10px;
+          color: #07593c;
         }
       }
     }

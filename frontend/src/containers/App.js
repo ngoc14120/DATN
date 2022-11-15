@@ -17,6 +17,9 @@ import Login from "./auth/Login";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePage";
 import DetailDentist from "./dentist/DetailDentist";
+import DetailService from "./dentist/DetailService";
+import ListService from "./HomePage/pages/ListService";
+import ListDentist from "./HomePage/pages/ListDentist";
 
 import { CustomToastCloseButton } from "../components/CustomToast";
 import ConfirmModal from "../components/ConfirmModal";
@@ -71,6 +74,9 @@ class App extends Component {
                   />
                   <Route path={path.HOMEPAGE} component={HomePage} />
                   <Route path={path.DETAIL_DENTIST} component={DetailDentist} />
+                  <Route path={"/list-dentist/"} component={ListDentist} />
+                  <Route path={path.DETAIL_SERVICE} component={DetailService} />
+                  <Route path={"/list-service/"} component={ListService} />
                 </Switch>
               </CustomScrollbars>
             </div>

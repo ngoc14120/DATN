@@ -12,6 +12,8 @@ import HomeFooter from "./HomeFooter";
 import "./HomePage.scss";
 import Handbook from "./Section/handbook";
 
+import * as actions from "../../store/actions";
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +22,7 @@ class HomePage extends Component {
     };
   }
   componentDidMount() {
-    setInterval(() => {
+    setTimeout(() => {
       this.setState({
         isLoading: true,
       });
@@ -67,7 +69,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    fetchServiceAllLimit: () => dispatch(actions.fetchServiceAllLimit()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

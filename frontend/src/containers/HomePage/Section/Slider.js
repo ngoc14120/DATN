@@ -5,12 +5,14 @@ import leftArrow from "../../../assets/images/left-arrow.svg";
 import rightArrow from "../../../assets/images/right-arrow.svg";
 import Slider1 from "../../../assets/images/slider1.jpg";
 import Slider2 from "../../../assets/images/slider2.jpg";
-import Slider3 from "../../../assets/images/slider_3.png";
+import Slider3 from "../../../assets/images/slider3.jpg";
+import Slider4 from "../../../assets/images/slider4.jpg";
 
 const dataSlider = [
   { id: 1, img: Slider1 },
   { id: 2, img: Slider2 },
   { id: 3, img: Slider3 },
+  { id: 4, img: Slider4 },
 ];
 
 class Slider extends Component {

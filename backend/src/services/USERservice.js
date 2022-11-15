@@ -170,7 +170,16 @@ let createNewService = (data) => {
 let getServiceAll = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let users = await db.Service.findAll();
+      let users = await db.Service.findAll({
+        include: [
+          {
+            model: db.Markdown,
+            attributes: ["contentHTML", "contentMarkdown", "description"],
+          },
+        ],
+        raw: false,
+        nest: true,
+      });
 
       resolve({ errCode: 0, data: users });
     } catch (e) {

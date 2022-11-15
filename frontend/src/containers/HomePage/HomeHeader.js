@@ -6,6 +6,7 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils/constant";
 import { changeLanguageApp } from "../../store/actions";
 import { withRouter } from "react-router";
+import { NavLink } from "react-router-dom";
 
 class HomeHeader extends Component {
   changeLanguage = (language) => {
@@ -27,49 +28,32 @@ class HomeHeader extends Component {
                   className="header-logo"
                   onClick={() => this.returnHome()}
                 ></div>
-                {/* <span>BookingDentistry</span> */}
               </div>
             </div>
             <div className="center-content">
               <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="homeheader.clinic" />
-                  </b>
-                </div>
-                <div className="sub-title">
-                  <FormattedMessage id="homeheader.chooseclinic" />
-                </div>
+                <NavLink to={"/home"}>
+                  <b>GIỚI THIỆU</b>
+                </NavLink>
               </div>
               <div className="child-content">
                 <div>
-                  <b>
-                    <FormattedMessage id="homeheader.specialist" />
-                  </b>
-                </div>
-                <div className="sub-title">
-                  <FormattedMessage id="homeheader.choosespecialist" />
+                  <b>BẢNG GIÁ</b>
                 </div>
               </div>
               <div className="child-content">
-                <div>
+                <NavLink to="/list-service">
                   <b>
                     <FormattedMessage id="homeheader.service" />
                   </b>
-                  <div className="sub-title">
-                    <FormattedMessage id="homeheader.chooseservice" />
-                  </div>
-                </div>
+                </NavLink>
               </div>
               <div className="child-content">
-                <div>
+                <NavLink to="/list-dentist">
                   <b>
                     <FormattedMessage id="homeheader.doctor" />
                   </b>
-                </div>
-                <div className="sub-title">
-                  <FormattedMessage id="homeheader.choosedoctor" />
-                </div>
+                </NavLink>
               </div>
             </div>
             <div className="right-content">
