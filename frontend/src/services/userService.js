@@ -3,6 +3,9 @@ import axios from "../axios";
 const handleLoginApi = (email, password) => {
   return axios.post("/api/login", { email, password });
 };
+const handleUserRegister = (data) => {
+  return axios.post("/api/register", data);
+};
 
 const getAllUsers = (inputId) => {
   return axios.get(`/api/get-all-users?id=${inputId}`);
@@ -67,6 +70,12 @@ const getDetailServiceInfoService = (id) => {
 const deleteService = (userId) => {
   return axios.delete("/api/delete-service", { data: { id: userId } });
 };
+
+//booking
+const bookingPatientService = (data) => {
+  return axios.post("/api/patient-booking", data);
+};
+
 export {
   handleLoginApi,
   getAllUsers,
@@ -87,4 +96,6 @@ export {
   deleteService,
   createServiceInfoService,
   getDetailServiceInfoService,
+  handleUserRegister,
+  bookingPatientService,
 };

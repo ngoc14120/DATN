@@ -10,7 +10,7 @@ let handleUserLogin = (email, password) => {
       let isExist = await checkUserEmail(email);
       if (isExist) {
         let user = await db.User.findOne({
-          attributes: ["email", "roleId", "password", "firstName"],
+          attributes: ["email", "roleId", "password", "firstName", "id"],
           where: { email: email },
           raw: true,
         });
@@ -111,6 +111,36 @@ let createNewUser = (data) => {
           roleId: data.roleId,
           positionId: data.positionId,
           image: data.avatar,
+        });
+        resolve({
+          errCode: 0,
+          message: "ok",
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let userRegister = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let check = await checkUserEmail(data.email);
+      if (check) {
+        resolve({
+          errCode: 1,
+          message: "Your email is already in used, plz try another email",
+        });
+      } else {
+        let hashPasswordbcryptjs = await hashUserPassword(data.password);
+        await db.User.create({
+          email: data.email,
+          password: hashPasswordbcryptjs,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          address: data.address,
+          phoneNumber: data.phoneNumber,
+          gender: data.gender,
         });
         resolve({
           errCode: 0,
@@ -408,4 +438,5 @@ module.exports = {
   deleteService,
   createServiceInfo,
   getDetailServiceById,
+  userRegister,
 };

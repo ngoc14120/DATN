@@ -32,6 +32,7 @@ class Header extends Component {
   render() {
     const { processLogout, language, userInfo } = this.props;
     let { isDentistLogin } = this.state;
+    console.log(userInfo);
     return (
       <div className="header-container">
         <div className="sidebar">
@@ -49,6 +50,12 @@ class Header extends Component {
                     <FormattedMessage id={"Quản lý lịch khám"} />
                   </span>
                 </NavLink>
+              </li>
+              <li className="log_out" onClick={processLogout}>
+                <a href="#">
+                  <i className="bx bx-log-out"></i>
+                  <span className="links_name">Log out</span>
+                </a>
               </li>
             </ul>
           ) : (

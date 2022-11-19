@@ -141,6 +141,12 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case actionTypes.USER_REGISTER_SUCCESS:
+      state.isCreateDentistInfo = 0;
+      console.log(state.isCreateDentistInfo);
+      return {
+        ...state,
+      };
 
     case actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_SUCCESS:
       state.extraInfoDentist = action.dataExtraDentist;

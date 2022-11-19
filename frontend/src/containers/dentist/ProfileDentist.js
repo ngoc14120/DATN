@@ -3,6 +3,9 @@ import { Modal } from "reactstrap";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
+import "./ProfileDentist.scss";
+import _ from "lodash";
+import moment from "moment";
 
 class ProfileDentist extends Component {
   constructor(props) {
@@ -24,9 +27,45 @@ class ProfileDentist extends Component {
       });
     }
   }
+  renderTimeBooking = (dataTime) => {
+    if (dataTime && !_.isEmpty(dataTime)) {
+      let date = moment.unix(+dataTime.date / 1000).format("dddd - DD/MM/YYYY");
+      return (
+        <>
+          <div>
+            {dataTime.timeTypeData.valueVi} - {date}
+          </div>
+          <div>Miễn phí đặt lịch</div>
+        </>
+      );
+    }
+  };
   render() {
-    console.log(this.state);
-    return <div>ssd</div>;
+    let { dataProfile } = this.state;
+    let { dataTime } = this.props;
+    console.log(dataTime);
+    let name = "";
+    if (dataProfile && dataProfile.positionData) {
+      name = `${dataProfile.positionData.valueVi}: ${dataProfile.lastName} ${dataProfile.firstName}`;
+    }
+    return (
+      <div className="profile-dentist-container">
+        <div className="intro-dentist">
+          <div
+            className="content-left"
+            style={{
+              backgroundImage: `url(${
+                dataProfile && dataProfile.image ? dataProfile.image : ""
+              })`,
+            }}
+          ></div>
+          <div className="content-right">
+            <div className="up">{name}</div>
+            <div className="down">{this.renderTimeBooking(dataTime)}</div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

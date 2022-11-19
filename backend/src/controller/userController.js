@@ -9,6 +9,7 @@ let handleLogin = async (req, res) => {
       message: "missing input parameter!",
     });
   }
+
   let userData = await userService.handleUserLogin(email, password);
   return res.status(200).json({
     errCode: userData.errCode,
@@ -33,7 +34,10 @@ let handleGetAllUsers = async (req, res) => {
     users,
   });
 };
-
+let handleRegister = async (req, res) => {
+  let message = await userService.userRegister(req.body);
+  return res.status(200).json(message);
+};
 let handleCreateNewUser = async (req, res) => {
   let message = await userService.createNewUser(req.body);
   return res.status(200).json(message);
@@ -157,4 +161,5 @@ module.exports = {
   handleDeleteService: handleDeleteService,
   handleCreateServiceInfo: handleCreateServiceInfo,
   handleGetDetailServiceById: handleGetDetailServiceById,
+  handleRegister: handleRegister,
 };

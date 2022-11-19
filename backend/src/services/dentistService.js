@@ -354,6 +354,7 @@ let GetExtraInfoDentistById = (doctorId) => {
     }
   });
 };
+
 module.exports = {
   getDentistNew,
   getDentistAll,

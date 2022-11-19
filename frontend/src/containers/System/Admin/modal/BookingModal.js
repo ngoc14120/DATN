@@ -39,7 +39,6 @@ class BookingModal extends Component {
     this.props.getPositionStart();
     this.props.getRoleStart();
     let user = this.props.editUserModal;
-    console.log(user);
     if (user && !_.isEmpty(user)) {
       let imageBase64 = "";
       if (user.image) {
@@ -71,21 +70,24 @@ class BookingModal extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.genderRedux !== this.props.genderRedux) {
       let arrGenders = this.props.genderRedux;
-      let { action } = this.state;
       this.setState({
         genderArr: arrGenders,
+        gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : "",
       });
     }
     if (prevProps.positionRedux !== this.props.positionRedux) {
       let arrPosition = this.props.positionRedux;
       this.setState({
         positionArr: arrPosition,
+        position:
+          arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : "",
       });
     }
     if (prevProps.roleRedux !== this.props.roleRedux) {
       let arrRole = this.props.roleRedux;
       this.setState({
         roleArr: arrRole,
+        role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : "",
       });
     }
   }

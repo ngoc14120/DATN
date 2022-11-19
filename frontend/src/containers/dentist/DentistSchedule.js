@@ -49,16 +49,12 @@ class DentistSchedule extends Component {
   }
   getArrDays = () => {
     let allDays = [];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 1; i < 7; i++) {
       let object = {};
-      if (i === 0) {
-        let ddMM = moment(new Date()).format("DD/MM");
-        let today = `Hôm nay - ${ddMM}`;
-        object.label = today;
-      } else {
-        let labelVi = moment(new Date()).add(i, "days").format("dddd - DD/MM");
-        object.label = this.capitalizeFirstLetter(labelVi);
-      }
+
+      let labelVi = moment(new Date()).add(i, "days").format("dddd - DD/MM");
+      object.label = this.capitalizeFirstLetter(labelVi);
+
       object.value = moment(new Date()).add(i, "days").startOf("day").valueOf();
       allDays.push(object);
     }
@@ -91,6 +87,7 @@ class DentistSchedule extends Component {
       dataScheduleTimeModal,
       isOpenModalBooking,
     } = this.state;
+    console.log(allDays);
     return (
       <div className="dentist-schedule">
         <select
@@ -141,7 +138,6 @@ class DentistSchedule extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    detailDentist: state.admin.detailDentist,
     allScheduleDate: state.admin.allScheduleDate,
   };
 };
@@ -151,8 +147,6 @@ const mapDispatchToProps = (dispatch) => {
     // fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
     fetchScheduleDentistByDate: (doctorId, date) =>
       dispatch(actions.fetchScheduleDentistByDate(doctorId, date)),
-    fetchDetailDentistInfo: (id) =>
-      dispatch(actions.fetchDetailDentistInfo(id)),
   };
 };
 

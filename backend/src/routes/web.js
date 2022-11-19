@@ -2,6 +2,7 @@ import express from "express";
 import homControllers from "../controller/homController";
 import userControllers from "../controller/userController";
 import dentistController from "../controller/dentistController";
+import patientControllers from "../controller/patientController";
 
 let router = express.Router();
 
@@ -16,6 +17,8 @@ let initWebRouter = (app) => {
   router.get("/delete-crud", homControllers.deleteCRUD);
 
   router.post("/api/login", userControllers.handleLogin);
+  router.post("/api/register", userControllers.handleRegister);
+
   router.get("/api/get-all-users", userControllers.handleGetAllUsers);
   router.post("/api/create-new-user", userControllers.handleCreateNewUser);
   router.put("/api/edit-user", userControllers.handleEditUser);
@@ -58,6 +61,12 @@ let initWebRouter = (app) => {
     userControllers.handleGetDetailServiceById
   );
   router.delete("/api/delete-service", userControllers.handleDeleteService);
+
+  // router booking
+  router.post(
+    "/api/patient-booking",
+    patientControllers.handleCreateBookingPatient
+  );
 
   return app.use("/", router);
 };

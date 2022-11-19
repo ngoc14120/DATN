@@ -89,6 +89,7 @@ let handleGetExtraInfoDentistById = async (req, res) => {
     });
   }
 };
+
 module.exports = {
   handleGetDentistNew: handleGetDentistNew,
   handleGetDentistAll: handleGetDentistAll,

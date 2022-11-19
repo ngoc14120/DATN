@@ -110,7 +110,7 @@ class ManageSchedule extends Component {
   };
   render() {
     let { rangeTime, selectedDentist } = this.state;
-    let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+    let yesterday = new Date(new Date().setDate(new Date().getDate()));
     return (
       <React.Fragment>
         <div className="manage-schedule-container">
