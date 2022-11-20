@@ -67,6 +67,10 @@ let initWebRouter = (app) => {
     "/api/patient-booking",
     patientControllers.handleCreateBookingPatient
   );
+  router.post(
+    "/api/verify-patient-booking",
+    patientControllers.handleVerifyBookingPatient
+  );
 
   return app.use("/", router);
 };

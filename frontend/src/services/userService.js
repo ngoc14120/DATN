@@ -75,7 +75,9 @@ const deleteService = (userId) => {
 const bookingPatientService = (data) => {
   return axios.post("/api/patient-booking", data);
 };
-
+const verifyBookingPatientService = (data) => {
+  return axios.post("/api/verify-patient-booking", data);
+};
 export {
   handleLoginApi,
   getAllUsers,
@@ -98,4 +100,5 @@ export {
   getDetailServiceInfoService,
   handleUserRegister,
   bookingPatientService,
+  verifyBookingPatientService,
 };

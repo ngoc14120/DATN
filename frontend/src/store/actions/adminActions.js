@@ -14,6 +14,7 @@ import {
   getExtraInfoDentistByIdService,
   handleUserRegister,
   bookingPatientService,
+  verifyBookingPatientService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -439,6 +440,31 @@ export const bookingPatient = (data) => {
     } catch (e) {
       dispatch({
         type: actionTypes.BOOKING_PATIENT_FAILED,
+      });
+    }
+  };
+};
+export const verifyBookingPatient = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await verifyBookingPatientService(data);
+      console.log(res);
+      if (res && res.errCode === 0) {
+        toast.success("create dentist info success");
+        dispatch({
+          type: actionTypes.VERIFY_BOOKING_PATIENT_SUCCESS,
+          data: res.errCode,
+        });
+      } else {
+        toast.error("create dentist info error");
+        dispatch({
+          type: actionTypes.VERIFY_BOOKING_PATIENT_FAILED,
+          data: res.errCode,
+        });
+      }
+    } catch (e) {
+      dispatch({
+        type: actionTypes.VERIFY_BOOKING_PATIENT_FAILED,
       });
     }
   };

@@ -8,6 +8,7 @@ import ProfileDentist from "../ProfileDentist";
 import _ from "lodash";
 import * as actions from "../../../store/actions";
 import "./BookingModal.scss";
+import moment from "moment";
 class BookingModal extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +38,7 @@ class BookingModal extends Component {
       });
     }
     if (this.props.dataTime !== prevProps.dataTime) {
+      console.log(prevProps.dataTime);
       let doctorId =
         this.props.dataTime && !_.isEmpty(this.props.dataTime)
           ? this.props.dataTime.doctorId
@@ -55,9 +57,37 @@ class BookingModal extends Component {
       ...copyState,
     });
   };
+  buildTimeBooking = (dataTime) => {
+    if (dataTime && !_.isEmpty(dataTime)) {
+      let date = moment.unix(+dataTime.date / 1000).format("dddd - DD/MM/YYYY");
+      return `${dataTime.timeTypeData.valueVi} - ${date}`;
+    }
+    return "";
+  };
+  buildDoctorName = (dataTime) => {
+    if (dataTime && !_.isEmpty(dataTime)) {
+      let name = `${dataTime.doctorData.lastName} ${dataTime.doctorData.firstName}`;
+      return name;
+    }
+    return "";
+  };
+  checkValidateInput = () => {
+    let isValid = true;
+    let arrCheck = ["email", "fullName", "phoneNumber", "address"];
+    for (let i = 0; i < arrCheck.length; i++) {
+      if (!this.state[arrCheck[i]]) {
+        isValid = false;
+        alert("this input is required " + arrCheck[i]);
+        break;
+      }
+    }
+    return isValid;
+  };
   handleBookingpatient = () => {
-    // let isValid = this.checkValidateInput();
-    // if (isValid === false) return;
+    let isValid = this.checkValidateInput();
+    if (isValid === false) return;
+    let timeString = this.buildTimeBooking(this.props.dataTime);
+    let doctorName = this.buildDoctorName(this.props.dataTime);
     console.log(this.state);
     this.props.bookingPatient({
       email: this.state.email,
@@ -67,6 +97,8 @@ class BookingModal extends Component {
       gender: this.state.gender,
       doctorId: this.state.doctorId,
       timeType: this.state.timeType,
+      timeString: timeString,
+      doctorName: doctorName,
     });
     this.setState({
       fullName: "",
@@ -82,10 +114,8 @@ class BookingModal extends Component {
   render() {
     let { isOpenModal, closeBookingModal, dataTime, language } = this.props;
     let doctorId = dataTime && !_.isEmpty(dataTime) ? dataTime.doctorId : "";
-    console.log(doctorId);
     let genders = this.state.genderArr;
-    let positions = this.state.positionArr;
-    let roles = this.state.roleArr;
+
     let { email, fullName, address, phoneNumber, gender } = this.state;
 
     return (

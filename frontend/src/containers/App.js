@@ -25,6 +25,7 @@ import { CustomToastCloseButton } from "../components/CustomToast";
 import ConfirmModal from "../components/ConfirmModal";
 import CustomScrollbars from "../components/CustomScrollbars";
 import Dentist from "../routes/Dentist";
+import VerifyEmail from "./HomePage/pages/VerifyEmail";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -77,6 +78,10 @@ class App extends Component {
                   <Route path={"/list-dentist/"} component={ListDentist} />
                   <Route path={path.DETAIL_SERVICE} component={DetailService} />
                   <Route path={"/list-service/"} component={ListService} />
+                  <Route
+                    path={path.VERIFY_EMAIL_BOOKING}
+                    component={VerifyEmail}
+                  />
                 </Switch>
               </CustomScrollbars>
             </div>

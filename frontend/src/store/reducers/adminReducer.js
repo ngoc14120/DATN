@@ -17,6 +17,7 @@ const initialState = {
   allService: [],
   listAllService: [],
   detailService: [],
+  dataVerifyBooking: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -188,6 +189,17 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_DETAIL_SERVICE_INFO_FAILED:
       state.detailService = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.VERIFY_BOOKING_PATIENT_SUCCESS:
+      state.dataVerifyBooking = action.data;
+      return {
+        ...state,
+      };
+    case actionTypes.VERIFY_BOOKING_PATIENT_FAILED:
+      state.dataVerifyBooking = action.data;
       return {
         ...state,
       };
