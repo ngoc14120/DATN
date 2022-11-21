@@ -43,7 +43,6 @@ class ProfileDentist extends Component {
   render() {
     let { dataProfile } = this.state;
     let { dataTime } = this.props;
-    console.log(dataTime);
     let name = "";
     if (dataProfile && dataProfile.positionData) {
       name = `${dataProfile.positionData.valueVi}: ${dataProfile.lastName} ${dataProfile.firstName}`;

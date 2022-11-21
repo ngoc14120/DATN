@@ -45,10 +45,18 @@ class ManageSchedule extends Component {
     let result = [];
     if (data && data.length > 0) {
       data.map((item, index) => {
-        let object = {};
-        object.label = `${item.lastName} ${item.firstName}`;
-        object.value = item.id;
-        result.push(object);
+        if (item.id === this.props.user.id && this.props.user.roleId === "R2") {
+          let object = {};
+          object.label = `${item.lastName} ${item.firstName}`;
+          object.value = item.id;
+          result.push(object);
+        }
+        if (this.props.user.roleId === "R1") {
+          let object = {};
+          object.label = `${item.lastName} ${item.firstName}`;
+          object.value = item.id;
+          result.push(object);
+        }
       });
     }
     return result;
@@ -170,6 +178,7 @@ class ManageSchedule extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    user: state.user.userInfo,
     allDentist: state.admin.allDentist,
     allScheduleTime: state.admin.allScheduleTime,
   };

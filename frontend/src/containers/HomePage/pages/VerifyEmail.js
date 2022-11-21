@@ -25,7 +25,6 @@ class VerifyEmail extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.verifyBooking !== this.props.verifyBooking) {
-      console.log(this.props.verifyBooking);
       if (this.props.verifyBooking === 0) {
         this.setState({
           statusVerify: true,

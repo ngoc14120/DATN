@@ -64,8 +64,6 @@ class SendBillModal extends Component {
   };
   render() {
     let { isOpenModal, closeSendBillModal, dataModal } = this.props;
-    console.log(dataModal);
-
     return (
       <Modal
         isOpen={isOpenModal}

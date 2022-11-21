@@ -38,7 +38,6 @@ class BookingModal extends Component {
       });
     }
     if (this.props.dataTime !== prevProps.dataTime) {
-      console.log(prevProps.dataTime);
       let doctorId =
         this.props.dataTime && !_.isEmpty(this.props.dataTime)
           ? this.props.dataTime.doctorId
@@ -88,7 +87,6 @@ class BookingModal extends Component {
     if (isValid === false) return;
     let timeString = this.buildTimeBooking(this.props.dataTime);
     let doctorName = this.buildDoctorName(this.props.dataTime);
-    console.log(this.state);
     this.props.bookingPatient({
       email: this.state.email,
       fullName: this.state.fullName,

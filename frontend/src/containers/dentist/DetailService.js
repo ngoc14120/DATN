@@ -33,7 +33,6 @@ class DetailService extends Component {
   render() {
     let { arrDetailService } = this.state;
     let { detailDentist } = this.props;
-    console.log(arrDetailService);
     return (
       <div>
         <HomeHeader />

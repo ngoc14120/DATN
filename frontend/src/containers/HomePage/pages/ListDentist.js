@@ -33,7 +33,6 @@ class ListDentist extends Component {
   };
   render() {
     let { arrService } = this.state;
-    console.log(arrService);
     return (
       <>
         <HomeHeader />

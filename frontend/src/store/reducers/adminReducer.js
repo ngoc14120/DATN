@@ -138,13 +138,11 @@ const adminReducer = (state = initialState, action) => {
 
     case actionTypes.CREATE_DENTIST_INFO_SUCCESS:
       state.isCreateDentistInfo = 0;
-      console.log(state.isCreateDentistInfo);
       return {
         ...state,
       };
     case actionTypes.USER_REGISTER_SUCCESS:
       state.isCreateDentistInfo = 0;
-      console.log(state.isCreateDentistInfo);
       return {
         ...state,
       };

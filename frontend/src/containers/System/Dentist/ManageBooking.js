@@ -80,7 +80,6 @@ class ManageBooking extends Component {
       timeType: dataModal.timeType,
       patientName: dataModal.patientName,
     });
-    console.log(res.errCode);
     if (res && res.errCode === 0) {
       this.setState({
         isShowLoading: false,
@@ -99,7 +98,6 @@ class ManageBooking extends Component {
 
   render() {
     let { dataPatient, isOpenModalSenBill, dataModal } = this.state;
-    console.log(dataPatient);
     return (
       <React.Fragment>
         <LoadingOverlay

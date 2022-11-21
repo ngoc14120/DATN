@@ -30,7 +30,6 @@ class Specialty extends Component {
   };
   render() {
     let { arrService } = this.state;
-    console.log(arrService);
     return (
       <div className="section-specialty">
         <div className="specialty-container">

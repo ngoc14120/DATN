@@ -16,12 +16,10 @@ class TableManageUser extends Component {
   }
 
   componentDidMount() {
-    console.log("shihi");
     this.props.fetchUserRedux();
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.listUsers !== this.props.listUsers) {
-      console.log("sdsdsdsd");
       this.setState({
         userRedux: this.props.listUsers,
       });
@@ -45,7 +43,6 @@ class TableManageUser extends Component {
   };
   render() {
     let arrUsers = this.state.userRedux;
-    console.log(this.props.listUsers);
     return (
       <>
         <table id="TableManageUser">

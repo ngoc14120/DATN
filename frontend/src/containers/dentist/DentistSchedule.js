@@ -87,7 +87,6 @@ class DentistSchedule extends Component {
       dataScheduleTimeModal,
       isOpenModalBooking,
     } = this.state;
-    console.log(allDays);
     return (
       <div className="dentist-schedule">
         <select

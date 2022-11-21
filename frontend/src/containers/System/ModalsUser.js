@@ -24,7 +24,6 @@ class ModalsUser extends Component {
         lastName: "",
         address: "",
       });
-      console.log("ddddd");
     });
   }
   componentDidMount() {}

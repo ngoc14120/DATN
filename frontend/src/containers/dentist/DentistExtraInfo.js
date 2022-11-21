@@ -32,8 +32,6 @@ class DentistExtraInfo extends Component {
     }
   }
   render() {
-    // console.log(this.props.doctorIdFromParent);
-    // console.log(this.props.extraInfoDentist);
     return (
       <div>helooooo</div>
 

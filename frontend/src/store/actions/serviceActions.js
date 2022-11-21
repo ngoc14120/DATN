@@ -13,7 +13,6 @@ import { toast } from "react-toastify";
 export const createServiceNew = (data) => {
   return async (dispatch, getState) => {
     try {
-      console.log(data);
       let res = await createServiceNewService(data);
       if (res && res.errCode === 0) {
         toast.success("create new service success");
@@ -84,7 +83,6 @@ export const deleteServiceId = (userId) => {
   return async (dispatch, getState) => {
     try {
       let res = await deleteService(userId);
-      console.log(res);
       if (res && res.errCode === 0) {
         toast.success("delete service success");
         dispatch({
@@ -107,9 +105,7 @@ export const deleteServiceId = (userId) => {
 export const createServiceInfo = (data) => {
   return async (dispatch, getState) => {
     try {
-      console.log(data);
       let res = await createServiceInfoService(data);
-      console.log(res);
       if (res && res.errCode === 0) {
         toast.success("create service info success");
         dispatch({

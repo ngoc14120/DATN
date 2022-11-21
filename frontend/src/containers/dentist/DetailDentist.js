@@ -33,7 +33,6 @@ class DetailDentist extends Component {
   render() {
     let { arrDetailDentist } = this.state;
     let { detailDentist } = this.props;
-    console.log(detailDentist);
     let position = "";
     if (arrDetailDentist && arrDetailDentist.positionData) {
       position = detailDentist.positionData.valueVi;

@@ -50,60 +50,6 @@ let getDentistAll = () => {
   });
 };
 
-// let createNewInfoDentist = (data) => {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       console.log(data);
-//       for (let key in data) {
-//         if (!data[key]) {
-//           resolve({
-//             errCode: 1,
-//             message: "missing parameter ",
-//           });
-//           return;
-//         } else {
-//           if (data[key] === "CREATE") {
-//             await db.Markdown.create({
-//               contentHTML: data.contentHTML,
-//               contentMarkdown: data.contentMarkdown,
-//               description: data.description,
-//               doctorId: data.doctorId,
-//             });
-//             resolve({
-//               errCode: 0,
-//               message: "ok",
-//             });
-//           } else if (data[key] === "EDIT") {
-//             let dentistMarkdown = await db.Markdown.findOne({
-//               where: { doctorId: data.doctorId },
-//               raw: false,
-//             });
-//             console.log(dentistMarkdown);
-//             if (dentistMarkdown) {
-//               dentistMarkdown.contentHTML = data.contentHTML;
-//               dentistMarkdown.contentMarkdown = data.contentMarkdown;
-//               dentistMarkdown.description = data.description;
-
-//               await dentistMarkdown.save();
-//               resolve({
-//                 errCode: 0,
-//                 message: "update successfully",
-//               });
-//             } else {
-//               resolve({
-//                 errCode: 1,
-//                 message: "user not found",
-//               });
-//             }
-//           }
-//         }
-//       }
-//     } catch (e) {
-//       reject(e);
-//     }
-//   });
-// };
-
 let createNewInfoDentist = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -415,7 +361,6 @@ let getListPatientForDentist = (doctorId, date) => {
 let sendBill = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      console.log(data.doctorId, data.email);
       if (
         !data.doctorId ||
         !data.email ||
@@ -444,7 +389,6 @@ let sendBill = (data) => {
         }
 
         await EmailService.sendAttachment(data);
-        console.log("ssdsd");
 
         resolve({
           errCode: 0,

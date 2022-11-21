@@ -36,7 +36,6 @@ class HomePage extends Component {
       slidesToShow: 4,
       slidesToScroll: 1,
     };
-    console.log(this.state);
     return (
       <div>
         {this.state.isLoading === true ? (

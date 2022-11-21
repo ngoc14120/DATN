@@ -258,7 +258,6 @@ let deleteService = (userId) => {
 let createServiceInfo = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      console.log(data);
       if (
         !data.contentHTML ||
         !data.contentMarkdown ||

@@ -11,9 +11,7 @@ import Select from "react-select";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-function handleEditorChange({ html, text }) {
-  console.log("handleEditorChange", html, text);
-}
+function handleEditorChange({ html, text }) {}
 
 class ManageServiceInfo extends Component {
   constructor(props) {
@@ -93,7 +91,6 @@ class ManageServiceInfo extends Component {
     });
   };
   handleSaveDoctorInfo = () => {
-    console.log(this.state);
     this.props.createServiceInfo({
       contentMarkdown: this.state.contentMarkdown,
       contentHTML: this.state.contentHTML,
@@ -110,8 +107,6 @@ class ManageServiceInfo extends Component {
     });
   };
   render() {
-    // console.log(this.state);
-    // console.log("detailDentist", this.props.detailDentist);
     return (
       <React.Fragment>
         <div className="manage-doctor-container">

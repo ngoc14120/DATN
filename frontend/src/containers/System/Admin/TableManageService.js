@@ -43,7 +43,6 @@ class TableManageService extends Component {
   };
   render() {
     let arrService = this.state.arrService;
-    console.log(this.props.allService);
     return (
       <>
         <table id="TableManageService">

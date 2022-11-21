@@ -110,7 +110,6 @@ export const userRegister = (data) => {
 export const createNewUser = (data) => {
   return async (dispatch, getState) => {
     try {
-      console.log(data);
       let res = await createNewUserService(data);
       if (res && res.errCode === 0) {
         toast.success("create new user success");
@@ -425,7 +424,6 @@ export const bookingPatient = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await bookingPatientService(data);
-      console.log(res);
       if (res && res.errCode === 0) {
         toast.success("create dentist info success");
         dispatch({
@@ -448,7 +446,6 @@ export const verifyBookingPatient = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await verifyBookingPatientService(data);
-      console.log(res);
       if (res && res.errCode === 0) {
         toast.success("create dentist info success");
         dispatch({

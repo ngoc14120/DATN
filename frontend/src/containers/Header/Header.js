@@ -32,7 +32,6 @@ class Header extends Component {
   render() {
     const { processLogout, language, userInfo } = this.props;
     let { isDentistLogin } = this.state;
-    console.log(userInfo);
     return (
       <div className="header-container">
         <div className="sidebar">
