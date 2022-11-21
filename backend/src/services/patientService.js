@@ -12,7 +12,13 @@ let buildUrlEmail = (doctorId, token) => {
 let CreateBookingPatient = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      if (!data.email || !data.doctorId || !data.timeType || !data.fullName) {
+      if (
+        !data.email ||
+        !data.doctorId ||
+        !data.timeType ||
+        !data.fullName ||
+        !data.date
+      ) {
         resolve({
           errCode: 1,
           message: "missing parameter",

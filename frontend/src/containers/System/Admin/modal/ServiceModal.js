@@ -123,7 +123,6 @@ class ServiceModal extends Component {
         className={"modals-user-container"}
         size="lg"
         centered
-        z-index="999"
       >
         <div className="booking-modal-center ">
           <div className="booking-modal-header">

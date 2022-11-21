@@ -99,15 +99,15 @@ class BookingModal extends Component {
       timeType: this.state.timeType,
       timeString: timeString,
       doctorName: doctorName,
+      date: this.props.dataTime.date,
     });
+
     this.setState({
       fullName: "",
       email: "",
       gender: "",
       address: "",
       phoneNumber: "",
-      doctorId: "",
-      timeType: "",
     });
     this.props.closeBookingModal();
   };

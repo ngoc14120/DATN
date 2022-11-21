@@ -1,6 +1,7 @@
 import db from "../models/index";
 require("dotenv").config();
 import _ from "lodash";
+import EmailService from "./EmailService";
 
 const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 
@@ -359,7 +360,102 @@ let GetExtraInfoDentistById = (doctorId) => {
     }
   });
 };
+let getListPatientForDentist = (doctorId, date) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId || !date) {
+        resolve({
+          errCode: 1,
+          message: "missing parameter ",
+        });
+      } else {
+        let data = await db.Booking.findAll({
+          where: { statusId: "S2", doctorId: doctorId, date: date },
+          attributes: { exclude: ["id"] },
+          include: [
+            {
+              model: db.User,
+              as: "patientData",
+              attributes: [
+                "email",
+                "firstName",
+                "phoneNumber",
+                "address",
+                "gender",
+              ],
+              include: [
+                {
+                  model: db.Allcode,
+                  as: "genderData",
+                  attributes: ["valueEn", "valueVi"],
+                },
+              ],
+            },
+            {
+              model: db.Allcode,
+              as: "timeTypeDataBooking",
+              attributes: ["valueEn", "valueVi"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
 
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let sendBill = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      console.log(data.doctorId, data.email);
+      if (
+        !data.doctorId ||
+        !data.email ||
+        !data.patientId ||
+        !data.timeType ||
+        !data.imgBase64
+      ) {
+        resolve({
+          errCode: 1,
+          message: "missing parameter ",
+        });
+      } else {
+        let booking = await db.Booking.findOne({
+          where: {
+            statusId: "S2",
+            doctorId: data.doctorId,
+            patientId: data.patientId,
+            timeType: data.timeType,
+          },
+
+          raw: false,
+        });
+        if (booking) {
+          booking.statusId = "S3";
+          await booking.save();
+        }
+
+        await EmailService.sendAttachment(data);
+        console.log("ssdsd");
+
+        resolve({
+          errCode: 0,
+          message: "ok",
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   getDentistNew,
   getDentistAll,
@@ -368,4 +464,6 @@ module.exports = {
   CreateScheduleDentist,
   GetScheduleDentistByDate,
   GetExtraInfoDentistById,
+  getListPatientForDentist,
+  sendBill,
 };

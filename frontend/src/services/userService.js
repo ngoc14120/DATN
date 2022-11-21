@@ -78,6 +78,15 @@ const bookingPatientService = (data) => {
 const verifyBookingPatientService = (data) => {
   return axios.post("/api/verify-patient-booking", data);
 };
+const getListPatientForDentistService = (data) => {
+  return axios.get(
+    `/api/get-list-patient-for-dentist?doctorId=${data.doctorId}&date=${data.date}`
+  );
+};
+const senBillService = (data) => {
+  return axios.post("/api/send-bill", data);
+};
+
 export {
   handleLoginApi,
   getAllUsers,
@@ -101,4 +110,6 @@ export {
   handleUserRegister,
   bookingPatientService,
   verifyBookingPatientService,
+  getListPatientForDentistService,
+  senBillService,
 };

@@ -18,6 +18,11 @@ let dentistRouter = (app) => {
     "/api/get-extra-info-dentist-by-id",
     dentistController.handleGetExtraInfoDentistById
   );
+  router.get(
+    "/api/get-list-patient-for-dentist",
+    dentistController.handleGetListPatientForDentist
+  );
+  router.post("/api/send-bill", dentistController.handleSendBill);
   return app.use("/", router);
 };
 

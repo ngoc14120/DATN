@@ -46,9 +46,14 @@ class Header extends Component {
                 <NavLink to="/dentist/manage-schedule">
                   <i className="far fa-calendar-alt"></i>
                   {/* <i className="bx bx-box"></i> */}
-                  <span className="links_name">
-                    <FormattedMessage id={"Quản lý lịch khám"} />
-                  </span>
+                  <span className="links_name">Quản lý lịch khám</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dentist/manage-patient-booking">
+                  <i className="far fa-calendar-alt"></i>
+                  {/* <i className="bx bx-box"></i> */}
+                  <span className="links_name">Quản lý lịch hẹn</span>
                 </NavLink>
               </li>
               <li className="log_out" onClick={processLogout}>
@@ -63,18 +68,14 @@ class Header extends Component {
               <li>
                 <NavLink to="/system/user-redux">
                   <i className="bx bx-user"></i>
-                  <span className="links_name">
-                    <FormattedMessage id={"Quản Lý Người Dùng"} />
-                  </span>
+                  <span className="links_name">Quản Lý Người Dùng </span>
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dentist/manage-schedule">
                   <i className="far fa-calendar-alt"></i>
                   {/* <i className="bx bx-box"></i> */}
-                  <span className="links_name">
-                    <FormattedMessage id={"Quản lý lịch khám"} />
-                  </span>
+                  <span className="links_name">Quản lý lịch khám</span>
                 </NavLink>
               </li>
               <li>

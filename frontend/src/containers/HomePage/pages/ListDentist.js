@@ -65,7 +65,7 @@ class ListDentist extends Component {
                     " " +
                     item.firstName;
                   return (
-                    <div className="dentist-customize col-4 p-1">
+                    <div className="dentist-customize col-4 p-1" key={index}>
                       <div className="outer-bg">
                         <div
                           className="bg-img dentist-image"

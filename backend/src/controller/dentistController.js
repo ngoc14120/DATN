@@ -90,6 +90,32 @@ let handleGetExtraInfoDentistById = async (req, res) => {
   }
 };
 
+let handleGetListPatientForDentist = async (req, res) => {
+  try {
+    let response = await dentistService.getListPatientForDentist(
+      req.query.doctorId,
+      req.query.date
+    );
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
+
+let handleSendBill = async (req, res) => {
+  try {
+    let response = await dentistService.sendBill(req.body);
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
 module.exports = {
   handleGetDentistNew: handleGetDentistNew,
   handleGetDentistAll: handleGetDentistAll,
@@ -98,4 +124,6 @@ module.exports = {
   handleCreateScheduleDentist: handleCreateScheduleDentist,
   handleGetScheduleDentistByDate: handleGetScheduleDentistByDate,
   handleGetExtraInfoDentistById: handleGetExtraInfoDentistById,
+  handleGetListPatientForDentist: handleGetListPatientForDentist,
+  handleSendBill: handleSendBill,
 };
