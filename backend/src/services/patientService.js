@@ -45,7 +45,7 @@ let CreateBookingPatient = (data) => {
           },
         });
         if (user && user[0]) {
-          await db.Booking.findOrCreate({
+          let booking = await db.Booking.findOrCreate({
             where: { patientId: user[0].id },
             defaults: {
               statusId: "S1",

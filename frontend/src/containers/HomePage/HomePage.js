@@ -5,12 +5,10 @@ import HomeHeader from "./HomeHeader";
 import Specialty from "./Section/Specialty";
 import Slider from "./Section/Slider";
 import Clinic from "./Section/Clinic";
-// import Handbook from "./Section/handbook";
 import OutstandingDentist from "./Section/OutstandingDentist";
 import About from "./Section/About";
 import HomeFooter from "./HomeFooter";
 import "./HomePage.scss";
-import Handbook from "./Section/handbook";
 
 import * as actions from "../../store/actions";
 
@@ -18,13 +16,13 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
+      isLoading: true,
     };
   }
   componentDidMount() {
     setTimeout(() => {
       this.setState({
-        isLoading: true,
+        isLoading: false,
       });
     }, 3000);
   }
@@ -37,26 +35,15 @@ class HomePage extends Component {
       slidesToScroll: 1,
     };
     return (
-      <div>
-        {this.state.isLoading === true ? (
-          <>
-            <HomeHeader />
-            <Slider />
-            <Specialty settings={settings} />
-            <Clinic settings={settings} />
-            <OutstandingDentist settings={settings} />
-            <Handbook settings={settings} />
-            <About />
-            <HomeFooter />
-          </>
-        ) : (
-          <div className="loading-container">
-            <div className="is-loading">
-              <div className="loading"></div>
-            </div>
-          </div>
-        )}
-      </div>
+      <>
+        <HomeHeader />
+        <Slider />
+        <Specialty />
+        <Clinic />
+        <OutstandingDentist settings={settings} />
+        <About />
+        <HomeFooter />
+      </>
     );
   }
 }

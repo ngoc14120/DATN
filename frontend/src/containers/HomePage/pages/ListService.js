@@ -27,10 +27,10 @@ class ListService extends Component {
       });
     }
   }
-  handleClickDetailService = (service) => {
-    if (this.props.history)
-      this.props.history.push(`detail-service/${service.id}`);
-  };
+  // handleClickDetailService = (service) => {
+  //   if (this.props.history)
+  //     this.props.history.push(`detail-service/${service.id}`);
+  // };
   render() {
     let { arrService } = this.state;
     return (
@@ -60,7 +60,7 @@ class ListService extends Component {
                   let description =
                     item && item.Markdown ? item.Markdown.description : "";
                   return (
-                    <div className="service-customize col-4 p-1">
+                    <div className="service-customize col-4 p-1" key={index}>
                       <div className="outer-bg">
                         <div
                           className="bg-img service-image"
@@ -70,9 +70,9 @@ class ListService extends Component {
                         <p>{description}</p>
                         <button
                           className="btn btn-danger px-3"
-                          onClick={() => this.handleClickDetailService(item)}
+                          // onClick={() => this.handleClickDetailService(item)}
                         >
-                          Xem Chi Tiết
+                          <a href={`detail-service/${item.id}`}>Xem Chi Tiết</a>
                         </button>
                       </div>
                     </div>

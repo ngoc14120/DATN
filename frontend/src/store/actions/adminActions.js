@@ -396,33 +396,10 @@ export const fetchRequiredDentistInfoFailed = () => ({
   type: actionTypes.FETCH_REQUIRED_DENTIST_INFO_FAILED,
 });
 
-export const fetchExtraInfoDentistById = (id) => {
-  return async (dispatch, getState) => {
-    try {
-      let res = await getExtraInfoDentistByIdService(id);
-
-      if (res && res.errCode === 0) {
-        dispatch({
-          type: actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_SUCCESS,
-          dataExtraDentist: res.data,
-        });
-      } else {
-        dispatch({
-          type: actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_FAILED,
-        });
-      }
-    } catch (e) {
-      dispatch({
-        type: actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_FAILED,
-      });
-    }
-  };
-};
-
-//bookings
 export const bookingPatient = (data) => {
   return async (dispatch, getState) => {
     try {
+      console.log(data);
       let res = await bookingPatientService(data);
       if (res && res.errCode === 0) {
         toast.success("create dentist info success");

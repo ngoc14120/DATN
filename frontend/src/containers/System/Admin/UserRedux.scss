@@ -43,3 +43,26 @@
     left: 60px;
   }
 }
+.btn-edit {
+  background: transparent;
+  color: orange;
+  border: 1px solid orange;
+  outline: none;
+  width: 50px;
+  margin-right: 4 px;
+  &:hover {
+    background-color: transparent;
+    color: orange;
+  }
+}
+.btn-delete {
+  background: transparent;
+  color: red;
+  border: 1px solid red;
+  outline: none;
+  width: 50px;
+  &:hover {
+    background-color: transparent;
+    color: red;
+  }
+}

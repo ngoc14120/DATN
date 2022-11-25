@@ -103,13 +103,14 @@ class BookingModal extends Component {
     this.setState({
       fullName: "",
       email: "",
-      gender: "",
       address: "",
       phoneNumber: "",
     });
+
     this.props.closeBookingModal();
   };
   render() {
+    console.log(this.state);
     let { isOpenModal, closeBookingModal, dataTime, language } = this.props;
     let doctorId = dataTime && !_.isEmpty(dataTime) ? dataTime.doctorId : "";
     let genders = this.state.genderArr;
@@ -126,7 +127,7 @@ class BookingModal extends Component {
       >
         <div className="booking-modal-center ">
           <div className="booking-modal-header">
-            <span className="left">THÊM NGƯỜI DÙNG</span>
+            <span className="left">ĐẶT LỊCH HẸN</span>
             <span className="right" onClick={closeBookingModal}>
               <i className="fas fa-times"></i>
             </span>

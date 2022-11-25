@@ -118,7 +118,7 @@ class ManageServiceInfo extends Component {
                 value={this.state.selectedOption}
                 onChange={this.handleChangeSelect}
                 options={this.state.listDentist}
-                placeholder={"chon bac si"}
+                placeholder={"Chọn dịch vụ"}
               />
             </div>
             <div className="content-right">

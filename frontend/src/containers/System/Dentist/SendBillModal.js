@@ -73,7 +73,7 @@ class SendBillModal extends Component {
       >
         <div className="booking-modal-center ">
           <div className="booking-modal-header">
-            <span className="left">THÊM NGƯỜI DÙNG</span>
+            <span className="left">GỬI HÓA ĐƠN</span>
             <span className="right" onClick={closeSendBillModal}>
               <i className="fas fa-times"></i>
             </span>

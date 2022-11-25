@@ -3,6 +3,7 @@ import actionTypes from "../actions/actionTypes";
 const initialState = {
   isLoadingGenders: false,
   isCreateDentistInfo: -1,
+  isCreateDentist: false,
   genders: [],
   roles: [],
   positions: [],
@@ -13,7 +14,6 @@ const initialState = {
   allScheduleTime: [],
   allScheduleDate: [],
   allRequiredDentistInfo: [],
-  extraInfoDentist: [],
   allService: [],
   listAllService: [],
   detailService: [],
@@ -137,23 +137,12 @@ const adminReducer = (state = initialState, action) => {
       };
 
     case actionTypes.CREATE_DENTIST_INFO_SUCCESS:
-      state.isCreateDentistInfo = 0;
+      state.isCreateDentist = !state.isCreateDentist;
       return {
         ...state,
       };
     case actionTypes.USER_REGISTER_SUCCESS:
       state.isCreateDentistInfo = 0;
-      return {
-        ...state,
-      };
-
-    case actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_SUCCESS:
-      state.extraInfoDentist = action.dataExtraDentist;
-      return {
-        ...state,
-      };
-    case actionTypes.FETCH_EXTRA_INFO_DENTIST_BY_ID_FAILED:
-      state.extraInfoDentist = [];
       return {
         ...state,
       };

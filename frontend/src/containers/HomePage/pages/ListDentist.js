@@ -45,7 +45,7 @@ class ListDentist extends Component {
           </div>
           <div className="dentist-container">
             <div className="dentist-header">
-              <span className="title-dentist">DỊCH VỤ NHA KHOA</span>
+              <span className="title-dentist">ĐỘI NGŨ NHA SĨ</span>
             </div>
             <div className="dentist-body row">
               {arrService &&
@@ -76,7 +76,7 @@ class ListDentist extends Component {
                           className="btn btn-danger px-3"
                           onClick={() => this.handleClickDetailDentist(item)}
                         >
-                          Xem Chi Tiết
+                          Xem Chi Tiết Và Đặt Lịch Hẹn
                         </button>
                       </div>
                     </div>

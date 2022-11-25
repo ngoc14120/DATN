@@ -60,6 +60,7 @@ class ManageBooking extends Component {
       email: item.patientData.email,
       timeType: item.timeType,
       patientName: item.patientData.firstName,
+      date: item.date,
     };
     this.setState({
       isOpenModalSenBill: true,
@@ -79,6 +80,7 @@ class ManageBooking extends Component {
       patientId: dataModal.patientId,
       timeType: dataModal.timeType,
       patientName: dataModal.patientName,
+      date: dataModal.date,
     });
     if (res && res.errCode === 0) {
       this.setState({
@@ -185,12 +187,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchDentistAll: () => dispatch(actions.fetchDentistAll()),
-    fetchScheduleTimeAll: () => dispatch(actions.fetchScheduleTimeAll()),
-    createScheduleDentist: (data) =>
-      dispatch(actions.createScheduleDentist(data)),
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageBooking);

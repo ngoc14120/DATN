@@ -5,8 +5,8 @@ import "./DetailService.scss";
 import * as actions from "../../store/actions";
 import HomeHeader from "../HomePage/HomeHeader";
 import HomeFooter from "../HomePage/HomeFooter";
-import DentistSchedule from "./DentistSchedule";
-import DentistExtraInfo from "./DentistExtraInfo";
+
+import ServiceOther from "./ServiceOther";
 class DetailService extends Component {
   constructor(props) {
     super(props);
@@ -70,6 +70,7 @@ class DetailService extends Component {
                 )}
               </div>
             </div>
+            <ServiceOther />
           </div>
         </div>
 

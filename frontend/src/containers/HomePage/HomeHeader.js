@@ -32,14 +32,14 @@ class HomeHeader extends Component {
             </div>
             <div className="center-content">
               <div className="child-content">
-                <NavLink to={"/home"}>
+                <NavLink to="/home">
                   <b>GIỚI THIỆU</b>
                 </NavLink>
               </div>
               <div className="child-content">
-                <div>
+                <NavLink to="/list-price">
                   <b>BẢNG GIÁ</b>
-                </div>
+                </NavLink>
               </div>
               <div className="child-content">
                 <NavLink to="/list-service">

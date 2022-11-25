@@ -9,6 +9,7 @@ import "./Header.scss";
 import { FormattedMessage } from "react-intl";
 import { NavLink } from "react-router-dom";
 import _ from "lodash";
+import { withRouter } from "react-router";
 
 class Header extends Component {
   constructor(props) {
@@ -25,6 +26,8 @@ class Header extends Component {
         this.setState({
           isDentistLogin: true,
         });
+        if (this.props.history)
+          this.props.history.push("/dentist/manage-schedule");
       }
     }
   }
@@ -32,6 +35,7 @@ class Header extends Component {
   render() {
     const { processLogout, language, userInfo } = this.props;
     let { isDentistLogin } = this.state;
+    console.log(userInfo.roleId);
     return (
       <div className="header-container">
         <div className="sidebar">
@@ -162,4 +166,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

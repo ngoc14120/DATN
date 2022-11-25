@@ -57,13 +57,7 @@ let createNewInfoDentist = (data) => {
         !data.contentHTML ||
         !data.contentMarkdown ||
         !data.doctorId ||
-        !data.action ||
-        !data.selectedPrice ||
-        !data.selectedPayment ||
-        !data.selectedProvince ||
-        !data.nameClinic ||
-        !data.addressClinic ||
-        !data.note
+        !data.action
       ) {
         resolve({
           errCode: 1,
@@ -90,30 +84,7 @@ let createNewInfoDentist = (data) => {
             await dentistMarkdown.save();
           }
         }
-        let dentistInfo = await db.Dentist_info.findOne({
-          where: { doctorId: data.doctorId },
-          raw: false,
-        });
-        if (dentistInfo) {
-          dentistInfo.priceId = data.selectedPrice;
-          dentistInfo.paymentId = data.selectedPayment;
-          dentistInfo.provinceId = data.selectedProvince;
-          dentistInfo.nameClinic = data.nameClinic;
-          dentistInfo.addressClinic = data.addressClinic;
-          dentistInfo.note = data.note;
 
-          await dentistInfo.save();
-        } else {
-          await db.Dentist_info.create({
-            priceId: data.selectedPrice,
-            paymentId: data.selectedPayment,
-            provinceId: data.selectedProvince,
-            doctorId: data.doctorId,
-            nameClinic: data.nameClinic,
-            addressClinic: data.addressClinic,
-            note: data.note,
-          });
-        }
         resolve({
           errCode: 0,
           message: "update successfully",
@@ -146,27 +117,6 @@ let getDetailDentistById = (id) => {
               model: db.Allcode,
               as: "positionData",
               attributes: ["valueEn", "valueVi"],
-            },
-            {
-              model: db.Dentist_info,
-              attributes: { exclude: ["id", "doctorId"] },
-              include: [
-                {
-                  model: db.Allcode,
-                  as: "priceIdData",
-                  attributes: ["valueEn", "valueVi"],
-                },
-                {
-                  model: db.Allcode,
-                  as: "paymentIdData",
-                  attributes: ["valueEn", "valueVi"],
-                },
-                {
-                  model: db.Allcode,
-                  as: "provinceIdData",
-                  attributes: ["valueEn", "valueVi"],
-                },
-              ],
             },
           ],
           raw: false,
@@ -263,49 +213,6 @@ let GetScheduleDentistByDate = (doctorId, date) => {
   });
 };
 
-let GetExtraInfoDentistById = (doctorId) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      if (!doctorId) {
-        resolve({
-          errCode: 1,
-          message: "missing parameter ",
-        });
-      } else {
-        let data = await db.Dentist_info.findOne({
-          where: { doctorId: doctorId },
-          attributes: { exclude: ["id", "doctorId"] },
-          include: [
-            {
-              model: db.Allcode,
-              as: "priceIdData",
-              attributes: ["valueEn", "valueVi"],
-            },
-            {
-              model: db.Allcode,
-              as: "paymentIdData",
-              attributes: ["valueEn", "valueVi"],
-            },
-            {
-              model: db.Allcode,
-              as: "provinceIdData",
-              attributes: ["valueEn", "valueVi"],
-            },
-          ],
-          raw: false,
-          nest: true,
-        });
-        if (!data) data = {};
-        resolve({
-          errCode: 0,
-          data: data,
-        });
-      }
-    } catch (e) {
-      reject(e);
-    }
-  });
-};
 let getListPatientForDentist = (doctorId, date) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -379,13 +286,22 @@ let sendBill = (data) => {
             doctorId: data.doctorId,
             patientId: data.patientId,
             timeType: data.timeType,
+            date: data.date,
           },
 
-          raw: false,
+          raw: true,
         });
+
         if (booking) {
-          booking.statusId = "S3";
-          await booking.save();
+          await db.History_booking.create({
+            doctorId: booking.doctorId,
+            patientId: booking.patientId,
+            timeType: booking.timeType,
+            date: booking.date,
+          });
+          await db.Booking.destroy({
+            where: { id: booking.id },
+          });
         }
 
         await EmailService.sendAttachment(data);
@@ -407,7 +323,6 @@ module.exports = {
   getDetailDentistById,
   CreateScheduleDentist,
   GetScheduleDentistByDate,
-  GetExtraInfoDentistById,
   getListPatientForDentist,
   sendBill,
 };

@@ -20,6 +20,7 @@ import DetailDentist from "./dentist/DetailDentist";
 import DetailService from "./dentist/DetailService";
 import ListService from "./HomePage/pages/ListService";
 import ListDentist from "./HomePage/pages/ListDentist";
+import ListPrice from "./HomePage/pages/ListPrice";
 
 import { CustomToastCloseButton } from "../components/CustomToast";
 import ConfirmModal from "../components/ConfirmModal";
@@ -78,6 +79,7 @@ class App extends Component {
                   <Route path={"/list-dentist/"} component={ListDentist} />
                   <Route path={path.DETAIL_SERVICE} component={DetailService} />
                   <Route path={"/list-service/"} component={ListService} />
+                  <Route path={"/list-price/"} component={ListPrice} />
                   <Route
                     path={path.VERIFY_EMAIL_BOOKING}
                     component={VerifyEmail}

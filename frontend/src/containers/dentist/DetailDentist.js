@@ -6,7 +6,6 @@ import * as actions from "../../store/actions";
 import HomeHeader from "../HomePage/HomeHeader";
 import HomeFooter from "../HomePage/HomeFooter";
 import DentistSchedule from "./DentistSchedule";
-import DentistExtraInfo from "./DentistExtraInfo";
 class DetailDentist extends Component {
   constructor(props) {
     super(props);
@@ -69,9 +68,6 @@ class DetailDentist extends Component {
                     </div>
                     <div className="dentist-schedule">
                       <DentistSchedule
-                        doctorIdFromParent={this.state.currentDentistId}
-                      />
-                      <DentistExtraInfo
                         doctorIdFromParent={this.state.currentDentistId}
                       />
                     </div>

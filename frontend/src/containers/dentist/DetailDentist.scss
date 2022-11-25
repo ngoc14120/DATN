@@ -34,9 +34,16 @@
       }
       .detail-dentist-right {
         width: 65%;
-        padding: 12px 24px;
+        padding: 12px 40px;
         .detail-dentist-info {
+          font-size: 16px;
           color: #323634;
+          ul {
+            margin-left: 40px;
+            li {
+              font-size: 16px;
+            }
+          }
         }
       }
     }
