@@ -7,10 +7,10 @@ import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
 import * as actions from "../../../../store/actions";
-import "./BookingModal.scss";
+import "./AddUserModal.scss";
 import _ from "lodash";
 
-class BookingModal extends Component {
+class AddUserModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -431,4 +431,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookingModal);
+export default connect(mapStateToProps, mapDispatchToProps)(AddUserModal);

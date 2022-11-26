@@ -26,8 +26,11 @@ class Header extends Component {
         this.setState({
           isDentistLogin: true,
         });
-        if (this.props.history)
+        if (this.props.history) {
           this.props.history.push("/dentist/manage-schedule");
+        }
+      } else {
+        this.props.history.push("/system/user-redux");
       }
     }
   }
@@ -35,7 +38,12 @@ class Header extends Component {
   render() {
     const { processLogout, language, userInfo } = this.props;
     let { isDentistLogin } = this.state;
-    console.log(userInfo.roleId);
+    let imageBase64 = "";
+
+    if (userInfo.image) {
+      imageBase64 = new Buffer(userInfo.image, "base64").toString("binary");
+    }
+    console.log(imageBase64);
     return (
       <div className="header-container">
         <div className="sidebar">
@@ -75,7 +83,7 @@ class Header extends Component {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dentist/manage-schedule">
+                <NavLink to="/dentist/manage-list-schedule">
                   <i className="far fa-calendar-alt"></i>
                   {/* <i className="bx bx-box"></i> */}
                   <span className="links_name">Quản lý lịch khám</span>
@@ -137,7 +145,7 @@ class Header extends Component {
               <i className="bx bx-search"></i>
             </div>
             <div className="profile-details">
-              <img src="images/profile.jpg" alt="" />
+              <img src={imageBase64} alt="" />
               <span className="admin_name">
                 {userInfo && userInfo.firstName ? userInfo.firstName : ""} !
               </span>

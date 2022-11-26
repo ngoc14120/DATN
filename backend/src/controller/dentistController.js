@@ -102,6 +102,29 @@ let handleSendBill = async (req, res) => {
     });
   }
 };
+
+let handleGetListSchedule = async (req, res) => {
+  try {
+    let response = await dentistService.getListSchedule(req.query.date);
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(500).json({
+      errCode: -1,
+      message: "error from server...",
+    });
+  }
+};
+let handleDeleteSchedule = async (req, res) => {
+  if (!req.body.id) {
+    return res.status(500).json({
+      errCode: 1,
+      message: "missing required id",
+    });
+  }
+
+  let message = await dentistService.deleteSchedule(req.body.id);
+  return res.status(200).json(message);
+};
 module.exports = {
   handleGetDentistNew: handleGetDentistNew,
   handleGetDentistAll: handleGetDentistAll,
@@ -111,4 +134,6 @@ module.exports = {
   handleGetScheduleDentistByDate: handleGetScheduleDentistByDate,
   handleGetListPatientForDentist: handleGetListPatientForDentist,
   handleSendBill: handleSendBill,
+  handleGetListSchedule,
+  handleDeleteSchedule,
 };

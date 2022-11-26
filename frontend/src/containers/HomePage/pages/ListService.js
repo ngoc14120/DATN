@@ -18,6 +18,7 @@ class ListService extends Component {
     };
   }
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.fetchServiceAll();
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -27,10 +28,7 @@ class ListService extends Component {
       });
     }
   }
-  // handleClickDetailService = (service) => {
-  //   if (this.props.history)
-  //     this.props.history.push(`detail-service/${service.id}`);
-  // };
+
   render() {
     let { arrService } = this.state;
     return (

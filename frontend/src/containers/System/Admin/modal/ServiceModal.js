@@ -8,7 +8,7 @@ import "react-image-lightbox/style.css";
 import Select from "react-select";
 
 import * as actions from "../../../../store/actions";
-import "./BookingModal.scss";
+import "./AddUserModal.scss";
 import _ from "lodash";
 
 class ServiceModal extends Component {

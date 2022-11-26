@@ -3,7 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./TableManageUser.scss";
 import * as actions from "../../../store/actions";
-import BookingModal from "./modal/BookingModal";
+import BookingModal from "./modal/AddUserModal";
 
 class TableManageUser extends Component {
   constructor(props) {

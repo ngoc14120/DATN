@@ -95,11 +95,6 @@ class DetailDentist extends Component {
 
         <HomeFooter />
       </div>
-
-      // <>
-      //   {/* <HomeHeader /> */}
-      //   <p>sdsdsdsdsds</p>
-      // </>
     );
   }
 }

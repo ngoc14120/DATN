@@ -83,11 +83,20 @@ const getListPatientForDentistService = (data) => {
     `/api/get-list-patient-for-dentist?doctorId=${data.doctorId}&date=${data.date}`
   );
 };
+
+const getListScheduleService = (data) => {
+  return axios.get(`/api/get-list-schedule?date=${data.date}`);
+};
 const senBillService = (data) => {
   return axios.post("/api/send-bill", data);
 };
 
+const deleteSchedule = (userId) => {
+  return axios.delete("/api/delete-schedule", { data: { id: userId } });
+};
 export {
+  deleteSchedule,
+  getListScheduleService,
   handleLoginApi,
   getAllUsers,
   createNewUserService,

@@ -30,6 +30,7 @@ class OutstandingDentist extends Component {
   };
   render() {
     let dentists = this.state.arrDentists;
+    console.log(dentists);
     return (
       <div className="section-outstanding-dentist">
         <div className="outstanding-dentist-container">

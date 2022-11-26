@@ -5,7 +5,7 @@ import { LANGUAGES, CRUD_ACTION, CommonUtils } from "../../../utils";
 
 import * as actions from "../../../store/actions";
 
-import BookingModal from "./modal/BookingModal";
+import AddUserModal from "./modal/AddUserModal";
 import "./UserRedux.scss";
 import TableManageUser from "./TableManageUser";
 
@@ -54,7 +54,7 @@ class UserRedux extends Component {
         </div>
 
         {this.state.isOpenModalBooking && (
-          <BookingModal
+          <AddUserModal
             isOpenModal={this.state.isOpenModalBooking}
             closeBookingModal={this.closeBookingModal}
             action={this.state.action}

@@ -16,6 +16,8 @@ let dentistRouter = (app) => {
     "/api/get-list-patient-for-dentist",
     dentistController.handleGetListPatientForDentist
   );
+  router.get("/api/get-list-schedule", dentistController.handleGetListSchedule);
+  router.delete("/api/delete-schedule", dentistController.handleDeleteSchedule);
   router.post("/api/send-bill", dentistController.handleSendBill);
   return app.use("/", router);
 };

@@ -264,7 +264,44 @@ let getListPatientForDentist = (doctorId, date) => {
     }
   });
 };
+let getListSchedule = (date) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!date) {
+        resolve({
+          errCode: 1,
+          message: "missing parameter ",
+        });
+      } else {
+        let data = await db.Schedule.findAll({
+          where: { date: date },
+          attributes: { exclude: ["currentNumber", "maxNumber"] },
+          include: [
+            {
+              model: db.Allcode,
+              as: "timeTypeData",
+              attributes: ["valueEn", "valueVi"],
+            },
+            {
+              model: db.User,
+              as: "doctorData",
+              attributes: ["firstName", "lastName"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
 
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 let sendBill = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -316,7 +353,33 @@ let sendBill = (data) => {
     }
   });
 };
+
+let deleteSchedule = (Id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let schedule = await db.Schedule.findOne({
+        where: { id: Id },
+      });
+      if (schedule) {
+        await db.Schedule.destroy({
+          where: { id: Id },
+        });
+        resolve({
+          errCode: 0,
+          message: "the schedule was deleted successfully",
+        });
+      }
+      resolve({
+        errCode: 2,
+        message: "the schedule isn't exits",
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
+  deleteSchedule,
   getDentistNew,
   getDentistAll,
   createNewInfoDentist,
@@ -325,4 +388,5 @@ module.exports = {
   GetScheduleDentistByDate,
   getListPatientForDentist,
   sendBill,
+  getListSchedule,
 };

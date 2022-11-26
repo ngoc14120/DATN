@@ -1,5 +1,6 @@
 import { divide } from "lodash";
 import React, { Component } from "react";
+import * as ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import HomeHeader from "./HomeHeader";
 import Specialty from "./Section/Specialty";
@@ -20,6 +21,7 @@ class HomePage extends Component {
     };
   }
   componentDidMount() {
+    window.scrollTo(0, 0);
     setTimeout(() => {
       this.setState({
         isLoading: false,

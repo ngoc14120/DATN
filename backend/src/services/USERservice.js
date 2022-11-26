@@ -10,7 +10,14 @@ let handleUserLogin = (email, password) => {
       let isExist = await checkUserEmail(email);
       if (isExist) {
         let user = await db.User.findOne({
-          attributes: ["email", "roleId", "password", "firstName", "id"],
+          attributes: [
+            "email",
+            "roleId",
+            "password",
+            "firstName",
+            "id",
+            "image",
+          ],
           where: { email: email },
           raw: true,
         });
@@ -34,6 +41,9 @@ let handleUserLogin = (email, password) => {
         userData.errMessage =
           "Your's email isn't exist in your system. Please try other email";
       }
+      // if (userData.image) {
+      //   userData.image = new Buffer(data.image, "base64").toString("binary");
+      // }
       resolve(userData);
     } catch (e) {
       reject(e);
@@ -141,6 +151,7 @@ let userRegister = (data) => {
           address: data.address,
           phoneNumber: data.phoneNumber,
           gender: data.gender,
+          roleId: "R2",
         });
         resolve({
           errCode: 0,

@@ -6,6 +6,7 @@ import ManageService from "../containers/System/Admin/ManageService";
 import ManageServiceInfo from "../containers/System/Admin/ManageServiceInfo";
 import Header from "../containers/Header/Header";
 import ManageBooking from "../containers/System/Dentist/ManageBooking";
+import ListSchedule from "../containers/System/Admin/ListSchedule";
 
 class Dentist extends Component {
   render() {
@@ -28,6 +29,10 @@ class Dentist extends Component {
               <Route
                 path="/dentist/manage-patient-booking"
                 component={ManageBooking}
+              />
+              <Route
+                path="/dentist/manage-list-schedule"
+                component={ListSchedule}
               />
             </Switch>
           </div>

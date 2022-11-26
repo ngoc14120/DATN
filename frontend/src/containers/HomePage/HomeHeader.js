@@ -13,7 +13,9 @@ class HomeHeader extends Component {
     this.props.changeLanguageAppRedux(language);
   };
   returnHome = () => {
-    if (this.props.history) this.props.history.push("/home");
+    if (this.props.history) {
+      this.props.history.push("/home");
+    }
   };
   render() {
     let language = this.props.language;
