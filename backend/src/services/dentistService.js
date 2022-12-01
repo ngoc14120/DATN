@@ -213,7 +213,7 @@ let GetScheduleDentistByDate = (doctorId, date) => {
   });
 };
 
-let getListPatientForDentist = (doctorId, date) => {
+let getListPatientForDentist = (date) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (!doctorId || !date) {

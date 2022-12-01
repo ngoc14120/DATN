@@ -37,6 +37,7 @@ class ListSchedule extends Component {
       });
     }
   };
+
   componentDidUpdate(prevProps, prevState, snapshot) {}
 
   handleOnchangeDatePick = (date) => {

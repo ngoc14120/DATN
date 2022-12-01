@@ -85,7 +85,9 @@ const getListPatientForDentistService = (data) => {
 };
 
 const getListScheduleService = (data) => {
-  return axios.get(`/api/get-list-schedule?date=${data.date}`);
+  return axios.get(
+    `/api/get-list-schedule?doctorId=${data.doctorId}&date=${data.date}`
+  );
 };
 const senBillService = (data) => {
   return axios.post("/api/send-bill", data);

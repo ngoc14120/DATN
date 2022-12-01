@@ -51,12 +51,6 @@ class ManageSchedule extends Component {
           object.value = item.id;
           result.push(object);
         }
-        if (this.props.user.roleId === "R1") {
-          let object = {};
-          object.label = `${item.lastName} ${item.firstName}`;
-          object.value = item.id;
-          result.push(object);
-        }
       });
     }
     return result;
