@@ -85,12 +85,12 @@ class ManageSchedule extends Component {
     let { currentDate, selectedDentist, rangeTime } = this.state;
     let result = [];
     if (!currentDate) {
-      toast.error("invalid date");
+      toast.error("ngày không hợp lệ");
       return;
     }
 
     if (selectedDentist && _.isEmpty(selectedDentist)) {
-      toast.error("invalid select dentist");
+      toast.error("nha sĩ không hợp lệ");
       return;
     }
     let formateDate = new Date(currentDate).getTime();
@@ -106,7 +106,7 @@ class ManageSchedule extends Component {
           result.push(object);
         });
       } else {
-        toast.error("invalid selectedTime");
+        toast.error("thời gian không hợp lệ");
         return;
       }
     }

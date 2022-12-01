@@ -22,7 +22,7 @@ class Clinic extends Component {
               <div className="bg-img clinic-image"></div>
               <div className="clinic-description">
                 <span className="clinic-description-header">
-                  Phòng khám nha khoa Morden
+                  Phòng khám nha khoa Implant
                 </span>
                 <p className="clinic-description-title">
                   Tại Phòng Khám Đa Khoa chúng tôi cung cấp đa dạng các dịch vụ

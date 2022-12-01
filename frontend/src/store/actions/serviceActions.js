@@ -15,13 +15,13 @@ export const createServiceNew = (data) => {
     try {
       let res = await createServiceNewService(data);
       if (res && res.errCode === 0) {
-        toast.success("create new service success");
+        toast.success("Tạo dịch vụ thành công");
         dispatch({
           type: actionTypes.CREATE_SERVICE_NEW_SUCCESS,
         });
         dispatch(fetchServiceAll());
       } else {
-        toast.error("create new service error");
+        toast.error("Tạo dịch vụ thất bại");
         dispatch({
           type: actionTypes.CREATE_SERVICE_NEW_FAILED,
         });
@@ -67,7 +67,7 @@ export const fetchServiceAllLimit = () => {
           dataServiceLimit: res.data.reverse(),
         });
       } else {
-        toast.error("fetch aall user error");
+        toast.error("Lấy tất cả người dùng thất bại");
         dispatch({
           type: actionTypes.FETCH_SERVICE_ALL_LIMIT_FAILED,
         });
@@ -84,13 +84,13 @@ export const deleteServiceId = (userId) => {
     try {
       let res = await deleteService(userId);
       if (res && res.errCode === 0) {
-        toast.success("delete service success");
+        toast.success("Xóa dịch vụ thành công");
         dispatch({
           type: actionTypes.DELETE_SERVICE_SUCCESS,
         });
         dispatch(fetchServiceAll());
       } else {
-        toast.error("delete service error");
+        toast.error("Xóa dịch vụ thất bại");
         dispatch({
           type: actionTypes.DELETE_SERVICE_FAILED,
         });
@@ -107,12 +107,12 @@ export const createServiceInfo = (data) => {
     try {
       let res = await createServiceInfoService(data);
       if (res && res.errCode === 0) {
-        toast.success("create service info success");
+        toast.success("Tạo thông tin dịch vụ thành công");
         dispatch({
           type: actionTypes.CREATE_SERVICE_INFO_SUCCESS,
         });
       } else {
-        toast.error("create service info error");
+        toast.error("Tạo thông tin dịch vụ thất bại");
         dispatch({
           type: actionTypes.CREATE_SERVICE_INFO_FAILED,
         });

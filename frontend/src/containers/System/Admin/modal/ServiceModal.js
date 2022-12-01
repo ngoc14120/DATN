@@ -31,7 +31,7 @@ class ServiceModal extends Component {
     if (service && !_.isEmpty(service)) {
       let imageBase64 = "";
       if (service.image) {
-        imageBase64 = new Buffer(service.image, "base64").toString("binary");
+        imageBase64 = Buffer.from(service.image, "base64").toString("binary");
       }
       this.setState({
         id: service.id,
@@ -93,16 +93,26 @@ class ServiceModal extends Component {
   handleEditUser = () => {
     let isValid = this.checkValidateInput();
     if (isValid === false) return;
-    // let { action } = this.state;
-    // if (action === CRUD_ACTION.CREATE) {
-    this.props.createServiceNew({
-      id: this.state.id,
-      name: this.state.name,
-      priceId: this.state.priceId,
-      description: this.state.description,
-      avatar: this.state.avatar,
-      action: this.state.action,
-    });
+    let { action } = this.state;
+    if (action === CRUD_ACTION.CREATE) {
+      this.props.createServiceNew({
+        id: this.state.id,
+        name: this.state.name,
+        priceId: this.state.priceId,
+        description: this.state.description,
+        avatar: this.state.avatar,
+        action: this.state.action,
+      });
+    } else {
+      this.props.createServiceNew({
+        id: this.state.id,
+        name: this.state.name,
+        priceId: this.state.priceId,
+        description: this.state.description,
+        avatar: this.state.avatar,
+        action: this.state.action,
+      });
+    }
 
     this.props.closeBookingModal();
   };
@@ -116,6 +126,7 @@ class ServiceModal extends Component {
   render() {
     let { isOpenModal, closeBookingModal } = this.props;
     let { name, description, priceId } = this.state;
+    console.log(this.state.action);
 
     return (
       <Modal
@@ -126,7 +137,7 @@ class ServiceModal extends Component {
       >
         <div className="booking-modal-center ">
           <div className="booking-modal-header">
-            <span className="left">THÊM NGƯỜI DÙNG</span>
+            <span className="left">THÊM DỊCH VỤ</span>
             <span className="right" onClick={closeBookingModal}>
               <i className="fas fa-times"></i>
             </span>
@@ -167,9 +178,7 @@ class ServiceModal extends Component {
                 />
               </div>
               <div className="col-5 mb-2 mt-2">
-                <label>
-                  <FormattedMessage id="manage-user.image" />
-                </label>
+                <label>Ảnh minh họa</label>
                 <div className="preview-image-container">
                   <input
                     type="file"

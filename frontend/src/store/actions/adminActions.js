@@ -90,12 +90,12 @@ export const userRegister = (data) => {
     try {
       let res = await handleUserRegister(data);
       if (res && res.errCode === 0) {
-        toast.success("create new user success");
+        toast.success("Tạo tài khoản thành công");
         dispatch({
           type: actionTypes.USER_REGISTER_SUCCESS,
         });
       } else {
-        toast.error("create new user error");
+        toast.error("Tạo tài khoản không thành công");
         dispatch({
           type: actionTypes.USER_REGISTER_FAILED,
         });
@@ -112,11 +112,11 @@ export const createNewUser = (data) => {
     try {
       let res = await createNewUserService(data);
       if (res && res.errCode === 0) {
-        toast.success("create new user success");
+        toast.success("Tạo tài khoản thành công");
         dispatch(saveUserSuccess());
         dispatch(fetchAllUsersStart());
       } else {
-        toast.error("create new user error");
+        toast.error("Tạo tài khoản không thành công");
         dispatch(saveUserFailed());
       }
     } catch (e) {
@@ -139,7 +139,7 @@ export const fetchAllUsersStart = () => {
       if (res && res.errCode === 0) {
         dispatch(fetchAllUsersSuccess(res.users.reverse()));
       } else {
-        toast.error("fetch aall user error");
+        toast.error("Lấy tất cả người dùng không thành công");
         dispatch(fetchAllUsersFailed());
       }
     } catch (e) {
@@ -160,11 +160,11 @@ export const deleteUser = (userId) => {
     try {
       let res = await deleteUserService(userId);
       if (res && res.errCode === 0) {
-        toast.success("delete user success");
+        toast.success("Xóa người dùng thành công");
         dispatch(deleteUsersSuccess());
         dispatch(fetchAllUsersStart());
       } else {
-        toast.error("delete user error");
+        toast.error("Xóa người dùng thất bại");
         dispatch(deleteUsersFailed());
       }
     } catch (e) {
@@ -184,11 +184,11 @@ export const editUser = (userId) => {
     try {
       let res = await editUserService(userId);
       if (res && res.errCode === 0) {
-        toast.success("edit user success");
+        toast.success("Cập nhật người dùng thành công");
         dispatch(editUsersSuccess());
         dispatch(fetchAllUsersStart());
       } else {
-        toast.error("edit user error");
+        toast.error("Cập nhật người dùng thất bại");
         dispatch(editUsersFailed());
       }
     } catch (e) {
@@ -252,12 +252,12 @@ export const createDentistInfo = (data) => {
     try {
       let res = await createDentistInfoService(data);
       if (res && res.errCode === 0) {
-        toast.success("create dentist info success");
+        toast.success("Tạo thông tin nha sĩ thành công");
         dispatch({
           type: actionTypes.CREATE_DENTIST_INFO_SUCCESS,
         });
       } else {
-        toast.error("create dentist info error");
+        toast.error("Tạo thông tin nha sĩ thất bại");
         dispatch({
           type: actionTypes.CREATE_DENTIST_INFO_FAILED,
         });
@@ -319,12 +319,12 @@ export const createScheduleDentist = (data) => {
     try {
       let res = await createScheduleDentistService(data);
       if (res && res.errCode === 0) {
-        toast.success("create dentist info success");
+        toast.success("Tạo thời gian khám thành công");
         dispatch({
           type: actionTypes.CREATE_SCHEDULE_DENTIST_SUCCESS,
         });
       } else {
-        toast.error("create dentist info error");
+        toast.error("Tạo thời gian khám thất bại");
         dispatch({
           type: actionTypes.CREATE_SCHEDULE_DENTIST_FAILED,
         });
@@ -402,12 +402,12 @@ export const bookingPatient = (data) => {
       console.log(data);
       let res = await bookingPatientService(data);
       if (res && res.errCode === 0) {
-        toast.success("create dentist info success");
+        toast.success("Đã tạo thông tin người dùng vui lòng kiểm tra Email");
         dispatch({
           type: actionTypes.BOOKING_PATIENT_SUCCESS,
         });
       } else {
-        toast.error("create dentist info error");
+        toast.error("Thông tin bị lỗi vui lòng đăng ký lại");
         dispatch({
           type: actionTypes.BOOKING_PATIENT_FAILED,
         });
@@ -424,13 +424,13 @@ export const verifyBookingPatient = (data) => {
     try {
       let res = await verifyBookingPatientService(data);
       if (res && res.errCode === 0) {
-        toast.success("create dentist info success");
+        toast.success("Gửi hóa đơn thành công");
         dispatch({
           type: actionTypes.VERIFY_BOOKING_PATIENT_SUCCESS,
           data: res.errCode,
         });
       } else {
-        toast.error("create dentist info error");
+        toast.error("Gửi hóa đơn thất bại");
         dispatch({
           type: actionTypes.VERIFY_BOOKING_PATIENT_FAILED,
           data: res.errCode,

@@ -41,9 +41,7 @@ let handleUserLogin = (email, password) => {
         userData.errMessage =
           "Your's email isn't exist in your system. Please try other email";
       }
-      // if (userData.image) {
-      //   userData.image = new Buffer(data.image, "base64").toString("binary");
-      // }
+
       resolve(userData);
     } catch (e) {
       reject(e);
@@ -190,7 +188,7 @@ let createNewService = (data) => {
             service.name = data.name;
             service.priceId = data.priceId;
             service.description = data.description;
-            if (service.avatar) {
+            if (data.avatar) {
               service.image = data.avatar;
             }
 
@@ -331,7 +329,7 @@ let getDetailServiceById = (id) => {
           nest: true,
         });
         if (data.image) {
-          data.image = new Buffer(data.image, "base64").toString("binary");
+          data.image = Buffer.from(data.image, "base64").toString("binary");
         }
         if (!data) data = {};
         resolve({

@@ -6,6 +6,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 class About extends Component {
+  scrollToTop = () => {
+    document.getElementById("root").scroll(0, 0);
+  };
   render() {
     return (
       <div className="section-group section-about">
@@ -41,6 +44,7 @@ class About extends Component {
                   quy trình nha khoa với mức giá minh bạch và được niêm yết theo
                   tiêu chuẩn cho tất cả bệnh nhân.
                 </p>
+                <button onClick={this.scrollToTop}>Scroll to Top</button>
               </div>
             </div>
           </div>

@@ -29,21 +29,25 @@ class Header extends Component {
         if (this.props.history) {
           this.props.history.push("/dentist/manage-schedule");
         }
-      } else {
-        this.props.history.push("/system/user-redux");
+      }
+      if (role === USER_ROLE.ADMIN) {
+        if (this.props.history) {
+          this.props.history.push("/system/user-redux");
+        }
       }
     }
   }
 
   render() {
+    console.log(this.state.isAdminLogin);
     const { processLogout, language, userInfo } = this.props;
     let { isDentistLogin } = this.state;
     let imageBase64 = "";
 
     if (userInfo.image) {
-      imageBase64 = new Buffer(userInfo.image, "base64").toString("binary");
+      imageBase64 = Buffer.from(userInfo.image, "base64").toString("binary");
     }
-    console.log(imageBase64);
+
     return (
       <div className="header-container">
         <div className="sidebar">
@@ -83,7 +87,7 @@ class Header extends Component {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dentist/manage-list-schedule">
+                <NavLink to="/system/manage-list-schedule">
                   <i className="far fa-calendar-alt"></i>
                   {/* <i className="bx bx-box"></i> */}
                   <span className="links_name">Quản lý lịch khám</span>
@@ -96,13 +100,13 @@ class Header extends Component {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/service/manage-service">
+                <NavLink to="/system/manage-service">
                   <i className="bx bx-list-ul"></i>
                   <span className="links_name">Quản lý Dịch Vụ</span>
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/service/manage-service-info">
+                <NavLink to="/system/manage-service-info">
                   <i className="bx bx-book-alt"></i>
                   <span className="links_name">Chi Tiết Dịch Vụ</span>
                 </NavLink>

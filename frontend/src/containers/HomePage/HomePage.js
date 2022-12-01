@@ -10,23 +10,21 @@ import OutstandingDentist from "./Section/OutstandingDentist";
 import About from "./Section/About";
 import HomeFooter from "./HomeFooter";
 import "./HomePage.scss";
-
 import * as actions from "../../store/actions";
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoading: true,
-    };
+    this.state = {};
   }
   componentDidMount() {
-    window.scrollTo(0, 0);
-    setTimeout(() => {
-      this.setState({
-        isLoading: false,
-      });
-    }, 3000);
+    document.getElementById("root").scrollTo(0, 0);
+    console.log(document.getElementById("root"));
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      window.scrollTo(0, 0);
+    }
   }
   render() {
     let settings = {
