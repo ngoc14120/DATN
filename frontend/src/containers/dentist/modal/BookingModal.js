@@ -216,16 +216,10 @@ class BookingModal extends Component {
           </div>
           <div className="booking-modal-footer">
             <button
-              className={
-                this.state.action === CRUD_ACTION.CREATE
-                  ? "btn btn-primary px-3 mx-3"
-                  : "btn btn-warning px-3 mx-3"
-              }
+              className="btn btn-primary px-3 mx-3"
               onClick={() => this.handleBookingpatient()}
             >
-              {this.state.action === CRUD_ACTION.CREATE
-                ? "Thêm Mới"
-                : "Cập Nhật"}
+              Đặt lịch{" "}
             </button>
             <button className="btn btn-danger px-3" onClick={closeBookingModal}>
               Hủy
