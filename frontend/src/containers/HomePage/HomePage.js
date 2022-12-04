@@ -17,15 +17,7 @@ class HomePage extends Component {
     super(props);
     this.state = {};
   }
-  componentDidMount() {
-    document.getElementById("root").scrollTo(0, 0);
-    console.log(document.getElementById("root"));
-  }
-  componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      window.scrollTo(0, 0);
-    }
-  }
+  componentDidMount() {}
   render() {
     let settings = {
       dots: false,
