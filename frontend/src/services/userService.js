@@ -79,9 +79,7 @@ const verifyBookingPatientService = (data) => {
   return axios.post("/api/verify-patient-booking", data);
 };
 const getListPatientForDentistService = (data) => {
-  return axios.get(
-    `/api/get-list-patient-for-dentist?doctorId=${data.doctorId}&date=${data.date}`
-  );
+  return axios.get(`/api/get-list-patient-for-dentist?date=${data.date}`);
 };
 
 const getListScheduleService = (data) => {

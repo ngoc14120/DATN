@@ -216,14 +216,14 @@ let GetScheduleDentistByDate = (doctorId, date) => {
 let getListPatientForDentist = (date) => {
   return new Promise(async (resolve, reject) => {
     try {
-      if (!doctorId || !date) {
+      if (!date) {
         resolve({
           errCode: 1,
           message: "missing parameter ",
         });
       } else {
         let data = await db.Booking.findAll({
-          where: { statusId: "S2", doctorId: doctorId, date: date },
+          where: { statusId: "S2", date: date },
           attributes: { exclude: ["id"] },
           include: [
             {

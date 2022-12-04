@@ -50,7 +50,6 @@ class ListSchedule extends Component {
     let res = await deleteSchedule(item.id);
     if (res && res.errCode === 0) {
       toast.success("Xóa thành công");
-      this.closeSendBillModal();
       await this.getDataPatient();
     } else {
       toast.error("Xóa thất bại");

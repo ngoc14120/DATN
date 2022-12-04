@@ -31,7 +31,6 @@ class ManageBooking extends Component {
     let { currentDate } = this.state;
     let formateDate = new Date(currentDate).getTime();
     let res = await getListPatientForDentistService({
-      doctorId: user.id,
       date: formateDate,
     });
     if (res && res.errCode === 0) {

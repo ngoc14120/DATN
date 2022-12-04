@@ -79,7 +79,6 @@ let handleGetScheduleDentistByDate = async (req, res) => {
 let handleGetListPatientForDentist = async (req, res) => {
   try {
     let response = await dentistService.getListPatientForDentist(
-      req.query.doctorId,
       req.query.date
     );
     return res.status(200).json(response);
